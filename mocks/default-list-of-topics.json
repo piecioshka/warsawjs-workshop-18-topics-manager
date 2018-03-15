@@ -1,0 +1,24 @@
+[
+    {
+        "_id": "kjwhefkjsf",
+        "trainers": [
+            "2j3kb4j23n4k"
+        ],
+        "body": "Testy jednostkowe",
+        "vote": 0
+    },
+    {
+        "_id": "kjh123jh12iuk1j2n3kj1n23kj3h123h1jk2n3kj",
+        "trainers": [
+            "2j3kb4j23n4k"
+        ],
+        "body": "TypeScript"
+    },
+    {
+        "_id": "23j4nkj2nfjkdsnkjfna",
+        "trainers": [
+            "2j3kb4j23n4k"
+        ],
+        "body": "Wzorce projektowe (IoC)"
+    }
+]
