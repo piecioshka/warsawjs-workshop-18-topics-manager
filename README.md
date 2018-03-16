@@ -1,54 +1,77 @@
 # warsawjs-workshop-18-topics-manager 
 
-> TODO
+> Aplikacja stworzona na potrzeby WarsawJS Workshop #18
 
-## Wymagania funkcjonalne
+![](http://warsawjs.com/assets/images/logo/logo-transparent-240x240.png)
 
-0. Prezentacja `card` z tematem warsztatów
+## Zakres funkcjonalności projektu
+
+1. Prezentacja listy tematów warsztatów
+
+2. Element listy zawiera:
     - tytuł warsztatu
-    - lista trenerów, którzy mogli poprowadzić warsztat z tego tematu
-        - zaznaczony trenerów, który zgłosić (wyróżnić)
-    - przycisk do głosowania przez społeczność
+    - lista osób, którzy zgłosili się jako trenerzy
+        - autor tematu jest odpowiednio wyróżniony
+    - przyciski:
+        - do głosowania na temat przez społeczność (np. serduszko)
+        - do podłączenia kolejnego trenera
 
-1. użytkownicy mogą wprowadzać temat wydarzenia i opis wydarzenia
-2. lajkowanie tematów poprzez kliknięcie w serduszko
-3. autoryzacja przez GitHuba
+3. Osoby zgłaszające się jako trenerzy autoryzują się przez GitHuba
+    i udostępniają tylko podstawowe dane o sobie:
     - imię i nazwisko
     - email
-        - jak będziemy mieli email to możemy zbudować link do avatara za pomocą GRAVATARa:
+        - można zbudować link do avatara za pomocą GRAVATARa według wzoru:
             `'https://gravatar.com/avatar/' + md5(email) + '?s=200'`
 
-3. Persystencja
-    - początkujący: in-memory
-    - średni: localStorage
-    - średnio zaawansowani: firebase / sqlite / mongodb / azure
+4. Dane na temat tematów są zapisywane;
+    - poziom początkujący: `in-memory`
+    - poziom średni: `local storage`
+    - poziom zaawansowany: `firebase` / `sqlite` / `mongodb` / `azure`
 
-4. Zbieramy do momentu
-    - 3 trenerów
-    - 40 uczestników (lajków)
-    - gdy dotrze do celu, to wyróżnić kartę
-    
-5. Zadanie dla chętnych:
-    - zabezpieczenie przed wielokrotnym głosowaniem
-    - edycja wcześniej zgłoszonych przez siebie tematów
+5. Temat zostaje wyróżniony w sytuacji kiedy zbierze on:
+    - min. 3 trenerów
+    - min. 40 uczestników (lajków)
+
+6. Zadania dla chętnych:
+    - Zabezpieczenie przed wielokrotnym głosowaniem
+    - Edycja wcześniej zgłoszonych przez siebie tematów
 
 ## Krok po kroku
 
-1. Stwórz formularz 
+1. Stworzyć link do logowania za pomocą GitHuba
 
-2. Autoryzacja za pomocą OAuth 2.0
-    - https://tools.ietf.org/html/rfc6749#section-4.1
-    - https://www.youtube.com/watch?v=RyOiUpNSHxo
+2. Autoryzacja za pomocą `OAuth 2.0`
+
+    - poziom podstawowy: wykorzystać paczkę w `npm`
+    - poziom zaawansowany: napisać mechanizm komunikujący się z GitHubem
 
 2. Stworzenie aplikacji na GitHubie, w celu autoryzacji
     - https://developer.github.com/apps/building-oauth-apps/
-        1. https://github.com/settings/applications/new
-        2. https://developer.github.com/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps/
+    - https://developer.github.com/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps/
 
     - TODO: prezentacja jak wygląda komunikacja z GitHubem
     
     Listę aplikacji, które posiadają Twoje credentiale:
     https://github.com/settings/applications
+
+### Deployment
+
+1. Instalacja `parcel`
+2. Instalacja `gh-pages`
+3. Uruchomienie `npm run build`
+
+## Linki
+
+* OAuth 2.0
+    - https://tools.ietf.org/html/rfc6749#section-4.1
+    - https://www.youtube.com/watch?v=RyOiUpNSHxo
+* Github
+    - Lista moich aplikacji: https://github.com/settings/developers
+    - Stworzenie nowej aplikacji: https://github.com/settings/applications/new
+
+## Biblioteki
+
+* 
 
 ## License
 

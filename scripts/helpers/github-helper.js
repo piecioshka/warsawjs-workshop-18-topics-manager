@@ -40,15 +40,20 @@ function authorize(code) {
 
     const accessTokenURL = `${FETCH_ACCESS_TOKEN_URL}?${queryParams.toString()}`;
     const options = {
-        method
+        method,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'text/plain'
+        },
+        credentials: 'include'
     };
 
     fetch(accessTokenURL, options)
         .then((response) => {
             console.log(response);
         })
-        .catch((err) => {
-            console.log(err);
+        .catch((...args) => {
+            console.log(args);
         });
 }
 

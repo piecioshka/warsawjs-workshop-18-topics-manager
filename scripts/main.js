@@ -10,6 +10,8 @@ const TrainerListComponent = require('./components/trainer-list-component');
 const TopicsManager = require('./models/topics-manager');
 const TrainersManager = require('./models/trainers-manager');
 
+const GitHubHelper = require('./helpers/github-helper');
+
 function renderTopics($app) {
     const topicsManager = new TopicsManager();
     const trainersManager = new TrainersManager();
@@ -25,13 +27,13 @@ function renderTopics($app) {
     $list.render();
 
     topics.forEach((topic) => {
-        const a = $list.$el.querySelector('.topics');
-        console.log(a);
-        const $topics = new TopicElementComponent(a);
+        const $topicsPlaceholder = $app.querySelector('.topics');
+        const $topics = new TopicElementComponent($topicsPlaceholder);
         $topics.render(topic);
 
         topic.trainers.forEach((trainer) => {
-            const $trainers = new TrainerListComponent($topics.$el.querySelector('.trainers'));
+            const $trainerPlaceholder = $topics.$el.querySelector('.trainers');
+            const $trainers = new TrainerListComponent($trainerPlaceholder);
             $trainers.render(trainer);
         });
     });
@@ -43,7 +45,16 @@ function renderSignInPanel($app) {
     $signIn.render();
 }
 
+function setupGitHubAuthorization() {
+    const accessCodeGitHub = new URL(location.href).searchParams.get('code');
+
+    if (accessCodeGitHub) {
+        GitHubHelper.authorize(accessCodeGitHub);
+    }
+}
+
 function setup() {
+    setupGitHubAuthorization();
     const $app = document.querySelector('#app');
     renderSignInPanel($app);
     renderTopics($app);
