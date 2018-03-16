@@ -17,11 +17,7 @@
         - do podłączenia kolejnego trenera
 
 3. Osoby zgłaszające się jako trenerzy autoryzują się przez GitHuba
-    i udostępniają tylko podstawowe dane o sobie:
-    - imię i nazwisko
-    - email
-        - można zbudować link do avatara za pomocą GRAVATARa według wzoru:
-            `'https://gravatar.com/avatar/' + md5(email) + '?s=200'`
+    i udostępniają tylko podstawowe dane o sobie.
 
 4. Dane na temat tematów są zapisywane;
     - poziom początkujący: `in-memory`

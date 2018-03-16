@@ -1,5 +1,9 @@
 const AbstractComponent = require('./abstract-component');
 
+const console = {
+    log: require('debug')('version:component:log')
+};
+
 class VersionComponent extends AbstractComponent {
 
     compile(version) {

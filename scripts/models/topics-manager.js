@@ -2,30 +2,45 @@ const uuid = require('uuid');
 
 const MOCK = require('../../mocks/default-list-of-topics');
 
+const console = {
+    log: require('debug')('topics-manager:log')
+};
+
 class TopicsManager {
 
     constructor() {
         this.list = [];
 
-        MOCK.forEach((mock) => {
-            this.list.push(mock);
+        MOCK.forEach((item) => {
+            this.list.push(item);
         });
     }
 
-    add({ topicBody }) {
+    add(topic) {
         this.list.push({
-            _id: uuid.v4(),
-            body: topicBody
+            id: uuid.v4(),
+            name: topic.topicName,
+            trainers: [topic.trainerId],
+            vote: 0
         });
     }
 
-    vote({ topicId }) {
+    vote({ id }) {
+        const topic = this.list.find((topic) => {
+            return topic.id === id;
+        });
 
+        if (!topic) {
+            return;
+        }
+
+        topic.vote++;
     }
 
-    getAll() {
-        return MOCK;
+    getList() {
+        return this.list;
     }
+
 }
 
 module.exports = TopicsManager;

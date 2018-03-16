@@ -1,5 +1,3 @@
-const GravatarHelper = require('../helpers/gravatar-helper');
-
 const MOCK = require('../../mocks/default-list-of-trainers');
 
 class TrainersManager {
@@ -7,19 +5,16 @@ class TrainersManager {
     constructor() {
         this.list = [];
 
-        MOCK.forEach((mock) => {
-            this.add(mock);
-        });
+        MOCK.forEach(this.add.bind(this));
     }
 
     add(trainer) {
-        trainer.avatar = GravatarHelper.generate(trainer.email);
         this.list.push(trainer);
     }
 
     getById(id) {
         return this.list.find((trainer) => {
-            return trainer._id === id;
+            return trainer.id === id;
         });
     }
 

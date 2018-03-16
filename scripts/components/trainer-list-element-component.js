@@ -1,6 +1,10 @@
 const AbstractComponent = require('./abstract-component');
 
-class TrainerListComponent extends AbstractComponent {
+const console = {
+    log: require('debug')('trainer-list-element:component:log')
+};
+
+class TrainerListElementComponent extends AbstractComponent {
 
     compile(trainer) {
         return `
@@ -8,7 +12,7 @@ class TrainerListComponent extends AbstractComponent {
                 <div class="media-left">
                     <figure class="image is-48x48">
                         <img
-                                src="${trainer.avatar}"
+                                src="${trainer.avatar_url}"
                                 alt=""
                         />
                     </figure>
@@ -22,4 +26,4 @@ class TrainerListComponent extends AbstractComponent {
 
 }
 
-module.exports = TrainerListComponent;
+module.exports = TrainerListElementComponent;

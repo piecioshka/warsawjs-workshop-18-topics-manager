@@ -1,24 +1,26 @@
 [
     {
-        "_id": "kjwhefkjsf",
+        "id": "kjwhefkjsf",
+        "name": "Testy jednostkowe",
         "trainers": [
-            "2j3kb4j23n4k"
+            244935
         ],
-        "body": "Testy jednostkowe",
         "vote": 0
     },
     {
-        "_id": "kjh123jh12iuk1j2n3kj1n23kj3h123h1jk2n3kj",
+        "id": "kjh123jh12iuk1j2n3kj1n23kj3h123h1jk2n3kj",
+        "name": "TypeScript",
         "trainers": [
-            "2j3kb4j23n4k"
+            244935
         ],
-        "body": "TypeScript"
+        "vote": 0
     },
     {
-        "_id": "23j4nkj2nfjkdsnkjfna",
+        "id": "23j4nkj2nfjkdsnkjfna",
+        "name": "Wzorce projektowe (IoC)",
         "trainers": [
-            "2j3kb4j23n4k"
+            244935
         ],
-        "body": "Wzorce projektowe (IoC)"
+        "vote": 0
     }
 ]
