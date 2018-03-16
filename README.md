@@ -54,12 +54,18 @@
     Listę aplikacji, które posiadają Twoje credentiale:
     https://github.com/settings/applications
 
-### Deployment
+## 📦 Deployment :rocket:
 
-1. Instalacja `parcel`
-2. Instalacja `gh-pages`
-3. Uruchomienie `npm run build`, aby zbudować aplikację
-4. Uruchomienie `npm run deploy`, aby wrzucić na `GitHub Pages`
+<kbd>Copy + Paste</kbd>
+
+```
+git checkout master
+npm run build           # build distribution package
+npm run deploy          # upload dist/ folder to "gh-pages" branch
+npm version patch
+git push
+git push --tags
+```
 
 ## Linki
 
