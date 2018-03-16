@@ -25,53 +25,6 @@ let $app = null;
 let topicsManager = null;
 let trainersManager = null;
 
-function renderTopics() {
-    const topics = topicsManager.getList();
-    console.log('renderTopics', topics.length);
-
-    const $list = new TopicListComponent($app);
-    $list.render();
-
-    topics.forEach((topic) => {
-        const $topicsPlaceholder = $app.querySelector('.topics');
-        const $topics = new TopicListElementComponent($topicsPlaceholder);
-        $topics.on('topic:vote', (topic) => {
-            topicsManager.vote(topic);
-            render();
-        });
-        $topics.on('trainer:add', () => {
-            if (user) {
-                trainersManager.add(user);
-                render();
-            }
-        });
-        $topics.render(topic);
-
-        topic.trainers.forEach((trainerId) => {
-            const trainer = trainersManager.getById(trainerId);
-            const $trainerPlaceholder = $topics.$el.querySelector('.trainers');
-            const $trainers = new TrainerListElementComponent($trainerPlaceholder);
-            $trainers.render(trainer);
-        });
-    });
-}
-
-function renderTopicAddForm() {
-    if (user) {
-        const $form = new TopicAddFormComponent($app);
-        $form.on('topic:input', ({ name }) => {
-            topicsManager.add({
-                topicName: name,
-                trainerId: user.id
-            });
-            render();
-        });
-        $form.render();
-    } else {
-        TopicAddFormComponent.removeElement($app);
-    }
-}
-
 function setupGitHubAuthorization() {
     const accessCodeGitHub = new URL(location.href).searchParams.get('code');
 
@@ -95,13 +48,75 @@ function setupGitHubAuthorization() {
     }
 }
 
+function renderTopics() {
+    const topics = topicsManager.getList();
+    console.log('renderTopics', topics.length);
+
+    TopicListComponent.removeElement($app);
+
+    const $list = new TopicListComponent($app);
+    $list.render();
+
+    topics.forEach((topic) => {
+        const $topicsPlaceholder = $app.querySelector('.topics');
+        const $topics = new TopicListElementComponent($topicsPlaceholder);
+        $topics.on('topic:vote', (topic) => {
+            topicsManager.vote(topic);
+            renderTopics();
+        });
+        $topics.on('trainer:add', (topic) => {
+            if (user) {
+                trainersManager.add(user);
+                const status = topicsManager.addTrainer(topic, user);
+
+                // Jeśli udało się dodać trenera to odświeżamy listę tematów.
+                if (status) {
+                    renderTopics();
+                }
+            }
+        });
+        $topics.render({ topic, user });
+
+        topic.trainers.forEach((trainerId, index) => {
+            const trainer = trainersManager.getById(trainerId);
+            const $trainerPlaceholder = $topics.$el.querySelector('.trainers');
+            const $trainers = new TrainerListElementComponent($trainerPlaceholder);
+            $trainers.render(trainer);
+
+            if (index === 0) {
+                $trainers.$el.classList.add('selected');
+            }
+        });
+    });
+}
+
+function renderTopicAddForm() {
+    console.log('renderTopicAddForm');
+
+    if (user) {
+        const $form = new TopicAddFormComponent($app);
+        $form.on('topic:input', ({ name }) => {
+            topicsManager.addTopic({
+                topicName: name,
+                trainerId: user.id
+            });
+            render();
+        });
+        $form.render();
+    } else {
+        TopicAddFormComponent.removeElement($app);
+    }
+}
+
 function renderUserPanel() {
+    console.log('renderUserPanel');
     const $panel = new UserPanelComponent($app);
     $panel.render(user);
 }
 
 function renderVersion() {
-    const $version = new VersionComponent($app);
+    console.log('renderVersion');
+    const $version = new VersionComponent($app.querySelector('.js-version-placeholder'));
     $version.render(version);
 }
 
@@ -122,6 +137,7 @@ function render() {
 }
 
 function setup() {
+    console.log('setup');
     setupGitHubAuthorization();
     init();
     render();

@@ -1,0 +1,16 @@
+.trainer-list-element.selected {
+    position: relative;
+
+    &:after {
+        content: '⭐️';
+        position: absolute;
+        left: 40px;
+        top: -6px;
+        font-size: 12px;
+        color: #fff;
+    }
+
+    .subtitle {
+        font-weight: bold;
+    }
+}

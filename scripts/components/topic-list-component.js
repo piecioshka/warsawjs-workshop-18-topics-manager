@@ -1,4 +1,4 @@
-require('../../styles/components/topic-list.css');
+require('../../styles/components/topic-list.scss');
 
 const Mustache = require('mustache');
 const AbstractComponent = require('./abstract-component');

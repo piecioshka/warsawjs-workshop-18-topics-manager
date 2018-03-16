@@ -33,10 +33,13 @@ class UserPanelComponent extends AbstractComponent {
                             </figure>
                             <strong>WarsawJS Workshop #18</strong>: Topics Manager
                         </a>
+                        <span class="navbar-item js-version-placeholder">
+                            <!-- Tutaj będzie wersja aplikacji //-->
+                        </span>
                     </div>
 
                     <div class="navbar-end">
-                        {{#user}}
+                        {{ #user }}
                             <a href="https://github.com/{{ user.login }}" class="navbar-item js-user-panel">
                                 <span>{{ user.name }}</span>&nbsp;
                                 <figure class="image is-32x32">
@@ -46,9 +49,9 @@ class UserPanelComponent extends AbstractComponent {
                                     />
                                 </figure>
                             </a>
-                        {{/user}}
+                        {{ /user }}
     
-                        {{^user}}
+                        {{ ^user }}
                             <div class="navbar-item js-sign-in">
                                 <a href="#" class="button is-warning js-sign-in-via-github">
                                     <span>Zaloguj się za pomocą GitHuba</span>&nbsp;
@@ -57,19 +60,16 @@ class UserPanelComponent extends AbstractComponent {
                                     </figure>
                                 </a>
                             </div>
-                        {{/user}}
+                        {{ /user }}
                     </div>
                 </div>
             </nav>
         `, { user });
     }
 
-    _onClickSignIn() {
+    _onClickSignIn(evt) {
+        evt.preventDefault();
         GitHubHelper.redirectAuthorize();
-    }
-
-    render(model) {
-        super.render(model);
     }
 
 }

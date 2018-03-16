@@ -6,49 +6,57 @@
 
 ## Zakres funkcjonalności projektu
 
-1. Prezentacja listy tematów warsztatów
+1. [x] Prezentacja listy tematów warsztatów
 
-2. Element listy zawiera:
-    - tytuł warsztatu
-    - lista osób, którzy zgłosili się jako trenerzy
-        - autor tematu jest odpowiednio wyróżniony
-    - przyciski:
-        - do głosowania na temat przez społeczność (np. serduszko)
-        - do podłączenia kolejnego trenera
+2. [x] Element listy zawiera:
+    - [x] Tytuł warsztatu
+    - [x] Lista osób, którzy zgłosili się jako trenerzy
+        - [x] Autor (pierwszy trener) tematu jest odpowiednio wyróżniony
+    - [x] Przyciski:
+        - [x] Do głosowania na temat przez społeczność (np. serduszko)
+        - [x] Do zapisania kolejnego trenera
+            - [x] Zabezpieczenie przed wielokrotnym zapisaniem
 
-3. Osoby zgłaszające się jako trenerzy autoryzują się przez GitHuba
+3. [x] Osoby zgłaszające się jako trenerzy autoryzują się przez GitHuba
     i udostępniają tylko podstawowe dane o sobie.
+    - [x] Stworzenie aplikacji autoryzującej
+    - [x] Integracja z GitHub API
 
-4. Dane na temat tematów są zapisywane;
-    - poziom początkujący: `in-memory`
-    - poziom średni: `local storage`
-    - poziom zaawansowany: `firebase` / `sqlite` / `mongodb` / `azure`
+4. [x] Temat zostaje wyróżniony w sytuacji kiedy zbierze on:
+    - [x] min. 3 trenerów
+    - [x] min. 40 uczestników (lajków)
 
-5. Temat zostaje wyróżniony w sytuacji kiedy zbierze on:
-    - min. 3 trenerów
-    - min. 40 uczestników (lajków)
+5. [ ] Dane na temat tematów są zapisywane;
+    - [x] poziom początkujący: `in-memory`
+    - [ ] poziom średni: `local storage`
+    - [ ] poziom zaawansowany: `firebase` / `sqlite` / `mongodb` / `azure`
 
-6. Zadania dla chętnych:
-    - Zabezpieczenie przed wielokrotnym głosowaniem
-    - Edycja wcześniej zgłoszonych przez siebie tematów
+### Zadania dla chętnych:
+
+- [ ] Zabezpieczenie przed wielokrotnym głosowaniem
+- [ ] Edycja wcześniej zgłoszonych przez siebie tematów
 
 ## Krok po kroku
 
-1. Stworzyć link do logowania za pomocą GitHuba
+1. Stworzyć link do logowania via GitHub
+2. Stworzyć formularz do dodawania tematu
+3. Stworzyć listę tematów
+4. Zapisywać dane z wysłanego formularza
+5. Po zapisaniu formularza odświeżyć listę tematów
+6. 
 
-2. Autoryzacja za pomocą `OAuth 2.0`
+### Autoryzacja via GitHub
+
+1. Autoryzacja za pomocą `OAuth 2.0`
 
     - poziom podstawowy: wykorzystać paczkę w `npm`
     - poziom zaawansowany: napisać mechanizm komunikujący się z GitHubem
 
-2. Stworzenie aplikacji na GitHubie, w celu autoryzacji
+2. Stworzyć aplikację na GitHubie (w celu autoryzacji)
     - https://developer.github.com/apps/building-oauth-apps/
     - https://developer.github.com/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps/
 
     - TODO: prezentacja jak wygląda komunikacja z GitHubem
-    
-    Listę aplikacji, które posiadają Twoje credentiale:
-    https://github.com/settings/applications
 
 ## 📦 Deployment :rocket:
 
@@ -68,6 +76,7 @@ git push && git push --tags
 * Github
     - Lista moich aplikacji: https://github.com/settings/developers
     - Stworzenie nowej aplikacji: https://github.com/settings/applications/new
+    - Listę aplikacji, które posiadają Twoje credentiale: https://github.com/settings/applications
 * Pomocne:
     - Zawijanie tekstu: https://css-tricks.com/almanac/properties/t/text-overflow/
 

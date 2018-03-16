@@ -9,15 +9,9 @@ class VersionComponent extends AbstractComponent {
 
     compile(version) {
         return Mustache.render(`
-            <div class="section">
-                <div class="columns is-mobile is-centered">
-                    <div class="column is-narrow">
-                        <div class="tags has-addons">
-                            <span class="tag is-dark">version</span>
-                            <span class="tag is-info">{{ version }}</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="tags has-addons">
+                <span class="tag">version</span>
+                <span class="tag is-info">{{ version }}</span>
             </div>
         `, { version });
     }

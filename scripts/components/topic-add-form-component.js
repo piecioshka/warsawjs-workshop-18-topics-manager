@@ -1,4 +1,4 @@
-require('../../styles/components/topic-add-form.css');
+require('../../styles/components/topic-add-form.scss');
 
 const Mustache = require('mustache');
 const AbstractComponent = require('./abstract-component');
@@ -68,6 +68,7 @@ class TopicAddFormComponent extends AbstractComponent {
 
     _resetTopicInputValue() {
         this.$name.value = '';
+        this.$name.focus();
     }
 
     static removeElement($parent) {
