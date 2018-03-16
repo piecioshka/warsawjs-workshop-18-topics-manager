@@ -71,10 +71,12 @@ git push --tags
 * Github
     - Lista moich aplikacji: https://github.com/settings/developers
     - Stworzenie nowej aplikacji: https://github.com/settings/applications/new
+* Pomocne:
+    - Zawijanie tekstu: https://css-tricks.com/almanac/properties/t/text-overflow/
 
 ## Biblioteki
 
-* https://github.com/janl/mustache.js
+* http://handlebarsjs.com/
 * https://github.com/parcel-bundler/parcel
 * https://github.com/tschaub/gh-pages
 

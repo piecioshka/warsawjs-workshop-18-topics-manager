@@ -1,6 +1,8 @@
 .topic-list-element {
     margin: 10px;
     width: calc(25% - 20px);
+    overflow-wrap: break-word;
+    vertical-align: top;
 }
 
 @media (max-width: 1400px) {

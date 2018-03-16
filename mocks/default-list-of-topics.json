@@ -3,6 +3,7 @@
         "id": "kjwhefkjsf",
         "name": "Testy jednostkowe",
         "trainers": [
+            244935,
             244935
         ],
         "vote": 0
@@ -19,7 +20,8 @@
         "id": "23j4nkj2nfjkdsnkjfna",
         "name": "Wzorce projektowe (IoC)",
         "trainers": [
-            244935
+            244935,
+            123123123
         ],
         "vote": 0
     }

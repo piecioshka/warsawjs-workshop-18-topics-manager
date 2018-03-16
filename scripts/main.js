@@ -1,6 +1,7 @@
 'use strict';
 
 require('bulma');
+require('../styles/common.css');
 
 const TopicAddFormComponent = require('./components/topic-add-form-component');
 const TopicListElementComponent = require('./components/topic-list-element-component');

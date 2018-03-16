@@ -1,6 +1,6 @@
 require('../../styles/components/topic-list-element.css');
 
-const Mustache = require('mustache');
+const Handlebars = require('handlebars');
 const AbstractComponent = require('./abstract-component');
 
 const console = {
@@ -23,12 +23,14 @@ class TopicListElementComponent extends AbstractComponent {
     compile(topic) {
         this.topic = topic;
 
-        return Mustache.render(`
+        return Handlebars.compile(`
             <div class="topic-list-element is-inline-block">
                 <div class="card">
                     <header class="card-header">
-                        <p class="card-header-title">
-                            Temat: "{{ topic.name }}"
+                        <p class="card-header-title ellipsis">
+                            <span class="tag is-medium">
+                                "{{ topic.name }}"
+                            </span>
                         </p>
                     </header>
                 
@@ -39,9 +41,9 @@ class TopicListElementComponent extends AbstractComponent {
                     <footer class="card-footer">
                         <a href="#" class="card-footer-item js-vote-for-me">
                             ❤️ 
-                            {{#topic.vote}}
+                            {{#if topic.vote}}
                                 {{ topic.vote }}
-                            {{/topic.vote}}
+                            {{/if}}
                         </a>
 
                         <a href="#" class="card-footer-item js-append-trainer">
@@ -50,7 +52,7 @@ class TopicListElementComponent extends AbstractComponent {
                     </footer>
                 </div>
             </div>
-        `, { topic });
+        `)({ topic });
     }
 
     _onClickVote(evt) {

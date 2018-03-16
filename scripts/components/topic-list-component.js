@@ -1,6 +1,6 @@
 require('../../styles/components/topic-list.css');
 
-const Mustache = require('mustache');
+const Handlebars = require('handlebars');
 const AbstractComponent = require('./abstract-component');
 
 const console = {
@@ -10,13 +10,13 @@ const console = {
 class TopicListComponent extends AbstractComponent {
 
     compile() {
-        return Mustache.render(`
+        return Handlebars.compile(`
             <div class="section topic-list js-topic-list">
                 <div class="container">
                     <div class="topics"></div>
                 </div>
             </div>
-        `);
+        `)();
     }
 
     static removeElement($parent) {
