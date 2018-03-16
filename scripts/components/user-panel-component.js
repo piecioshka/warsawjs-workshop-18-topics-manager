@@ -1,3 +1,4 @@
+const Mustache = require('mustache');
 const AbstractComponent = require('./abstract-component');
 const GitHubHelper = require('../helpers/github-helper');
 
@@ -11,14 +12,17 @@ class UserPanelComponent extends AbstractComponent {
         super($parent);
 
         this.on('component:render', () => {
-            this.$el.querySelector('.js-sign-in-via-github').addEventListener('click', this._onClickSignIn.bind(this));
+            const $signIn = this.$el.querySelector('.js-sign-in-via-github');
+            if ($signIn) {
+                $signIn.addEventListener('click', this._onClickSignIn.bind(this));
+            }
         });
     }
 
-    compile(user = {}) {
-        return `
-            <nav class="navbar is-transparent">
-                <div class="navbar-menu">
+    compile(user) {
+        return Mustache.render(`
+            <nav class="navbar is-dark">
+                <div class="navbar-menu container">
                     <div class="navbar-start">
                         <a href="./" class="navbar-item">
                             <figure class="image is-32x32">
@@ -32,25 +36,29 @@ class UserPanelComponent extends AbstractComponent {
                     </div>
 
                     <div class="navbar-end">
-                        <div class="navbar-item js-sign-in">
-                            <a href="#" class="button is-warning js-sign-in-via-github">
-                                Zaloguj się za pomocą GitHuba
+                        {{#user}}
+                            <a class="navbar-item js-user-panel">
+                                <figure class="image is-32x32">
+                                    <img 
+                                        src="{{ user.avatar_url }}"
+                                        alt="{{ user.login }}"
+                                    />
+                                </figure>
+                                <span>{{ user.name }}</span>
                             </a>
-                        </div>
-
-                        <a class="navbar-item js-user-panel">
-                            <figure class="image is-32x32">
-                                <img 
-                                    src="${user && user.avatar_url}"
-                                    alt="${user && user.login}"
-                                />
-                            </figure>
-                            <span>${user && user.name}</span>
-                        </a>
+                        {{/user}}
+    
+                        {{^user}}
+                            <div class="navbar-item js-sign-in">
+                                <a href="#" class="button is-warning js-sign-in-via-github">
+                                    Zaloguj się za pomocą GitHuba
+                                </a>
+                            </div>
+                        {{/user}}
                     </div>
                 </div>
             </nav>
-        `;
+        `, { user });
     }
 
     _onClickSignIn() {
@@ -59,19 +67,6 @@ class UserPanelComponent extends AbstractComponent {
 
     render(model) {
         super.render(model);
-        this._setupUserPanel(model);
-    }
-
-    _setupUserPanel(model) {
-        const $signIn = document.querySelector('.js-sign-in');
-        const $panel = document.querySelector('.js-user-panel');
-        if (!model) {
-            $panel.classList.add('is-hidden');
-            $signIn.classList.remove('is-hidden');
-        } else {
-            $signIn.classList.add('is-hidden');
-            $panel.classList.remove('is-hidden');
-        }
     }
 
 }

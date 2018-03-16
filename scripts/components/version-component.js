@@ -1,3 +1,4 @@
+const Mustache = require('mustache');
 const AbstractComponent = require('./abstract-component');
 
 const console = {
@@ -7,16 +8,18 @@ const console = {
 class VersionComponent extends AbstractComponent {
 
     compile(version) {
-        return `
-            <div class="columns is-mobile is-centered">
-                <div class="column is-narrow">
-                    <div class="tags has-addons">
-                        <span class="tag is-dark">version</span>
-                        <span class="tag is-info">${version}</span>
+        return Mustache.render(`
+            <div class="section">
+                <div class="columns is-mobile is-centered">
+                    <div class="column is-narrow">
+                        <div class="tags has-addons">
+                            <span class="tag is-dark">version</span>
+                            <span class="tag is-info">{{ version }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        `;
+        `, { version });
     }
 
 }

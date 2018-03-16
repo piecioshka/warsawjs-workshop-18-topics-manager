@@ -19,13 +19,14 @@
     "dependencies": {},
     "devDependencies": {
         "bulma": "^0.6.2",
+        "debug": "latest",
         "gh-pages": "^1.1.0",
         "md5": "^2.2.1",
+        "mustache": "^2.3.0",
         "node-sass": "^4.7.2",
         "parcel-bundler": "^1.6.2",
         "super-event-emitter": "^4.1.6",
-        "uuid": "^3.2.1",
-        "debug": "latest"
+        "uuid": "^3.2.1"
     },
     "repository": {
         "type": "git",

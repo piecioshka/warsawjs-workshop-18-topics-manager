@@ -1,5 +1,6 @@
 require('../../styles/components/topic-list.css');
 
+const Mustache = require('mustache');
 const AbstractComponent = require('./abstract-component');
 
 const console = {
@@ -9,13 +10,13 @@ const console = {
 class TopicListComponent extends AbstractComponent {
 
     compile() {
-        return `
+        return Mustache.render(`
             <div class="section topic-list js-topic-list">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="topics"></div>
                 </div>
             </div>
-        `;
+        `);
     }
 
     static removeElement($parent) {

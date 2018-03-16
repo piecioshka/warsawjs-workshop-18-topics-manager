@@ -1,3 +1,6 @@
+require('../../styles/components/topic-add-form.css');
+
+const Mustache = require('mustache');
 const AbstractComponent = require('./abstract-component');
 
 const ENTER_KEY_CODE = 13;
@@ -12,31 +15,36 @@ class TopicAddFormComponent extends AbstractComponent {
         super($parent);
 
         this.on('component:render', () => {
-            this.$el.querySelector('.js-topic-name').addEventListener('keydown', this._onKeydownTopicName.bind(this));
-            this.$el.querySelector('.js-add-button').addEventListener('click', this._onClickAddButton.bind(this));
+            this.$name = this.$el.querySelector('.js-topic-name');
+            this.$name.addEventListener('keydown', this._onKeydownTopicName.bind(this));
+
+            this.$button = this.$el.querySelector('.js-add-button');
+            this.$button.addEventListener('click', this._onClickAddButton.bind(this));
         });
     }
 
     compile() {
-        return `
-            <article class="message is-success">
-                <div class="message-header">
-                    <p>Dodaj temat warsztatów</p>
-                </div>
-                <div class="message-body">
-                    <div class="field is-grouped js-topic-and-form">
-                        <div class="control is-expanded">
-                            <input class="input js-topic-name" type="text" placeholder="Wpisz tutaj temat warsztatów jakie chciałbyś poprowadzić"/>
-                        </div>
-                        <div class="control">
-                            <a class="button is-success js-add-button">
-                                Dodaj nowy temat
-                            </a>
-                        </div>
-                    </div>    
-                </div>
-            </article>
-        `;
+        return Mustache.render(`
+            <div class="container topic-add-form">
+                <article class="message is-success">
+                    <div class="message-header">
+                        <p>Dodaj temat warsztatów</p>
+                    </div>
+                    <div class="message-body">
+                        <div class="field is-grouped js-topic-and-form">
+                            <div class="control is-expanded">
+                                <input class="input js-topic-name" type="text" placeholder="Wpisz tutaj temat warsztatów jakie chciałbyś poprowadzić"/>
+                            </div>
+                            <div class="control">
+                                <a class="button is-success js-add-button">
+                                    Dodaj nowy temat
+                                </a>
+                            </div>
+                        </div>    
+                    </div>
+                </article>
+            </div>
+        `);
     }
 
     _onKeydownTopicName(evt) {
@@ -55,11 +63,11 @@ class TopicAddFormComponent extends AbstractComponent {
     }
 
     _getTopicInputValue() {
-        return this.$el.querySelector('.js-topic-name').value;
+        return this.$name.value;
     }
 
     _resetTopicInputValue() {
-        this.$el.querySelector('.js-topic-name').value = '';
+        this.$name.value = '';
     }
 
     static removeElement($parent) {
