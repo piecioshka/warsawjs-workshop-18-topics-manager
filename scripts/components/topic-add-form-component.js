@@ -1,6 +1,6 @@
 require('../../styles/components/topic-add-form.css');
 
-const Handlebars = require('handlebars');
+const Mustache = require('mustache');
 const AbstractComponent = require('./abstract-component');
 
 const ENTER_KEY_CODE = 13;
@@ -24,7 +24,7 @@ class TopicAddFormComponent extends AbstractComponent {
     }
 
     compile() {
-        return Handlebars.compile(`
+        return Mustache.render(`
             <div class="container topic-add-form">
                 <article class="message is-success">
                     <div class="message-header">
@@ -44,7 +44,7 @@ class TopicAddFormComponent extends AbstractComponent {
                     </div>
                 </article>
             </div>
-        `)();
+        `);
     }
 
     _onKeydownTopicName(evt) {

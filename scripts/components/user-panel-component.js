@@ -1,4 +1,4 @@
-const Handlebars = require('handlebars');
+const Mustache = require('mustache');
 const AbstractComponent = require('./abstract-component');
 const GitHubHelper = require('../helpers/github-helper');
 
@@ -20,7 +20,7 @@ class UserPanelComponent extends AbstractComponent {
     }
 
     compile(user) {
-        return Handlebars.compile(`
+        return Mustache.render(`
             <nav class="navbar is-dark">
                 <div class="navbar-menu container">
                     <div class="navbar-start">
@@ -36,7 +36,7 @@ class UserPanelComponent extends AbstractComponent {
                     </div>
 
                     <div class="navbar-end">
-                        {{#if user}}
+                        {{#user}}
                             <a href="https://github.com/{{ user.login }}" class="navbar-item js-user-panel">
                                 <span>{{ user.name }}</span>&nbsp;
                                 <figure class="image is-32x32">
@@ -46,9 +46,9 @@ class UserPanelComponent extends AbstractComponent {
                                     />
                                 </figure>
                             </a>
-                        {{/if}}
+                        {{/user}}
     
-                        {{#unless user}}
+                        {{^user}}
                             <div class="navbar-item js-sign-in">
                                 <a href="#" class="button is-warning js-sign-in-via-github">
                                     <span>Zaloguj się za pomocą GitHuba</span>&nbsp;
@@ -57,11 +57,11 @@ class UserPanelComponent extends AbstractComponent {
                                     </figure>
                                 </a>
                             </div>
-                        {{/unless}}
+                        {{/user}}
                     </div>
                 </div>
             </nav>
-        `)({ user });
+        `, { user });
     }
 
     _onClickSignIn() {

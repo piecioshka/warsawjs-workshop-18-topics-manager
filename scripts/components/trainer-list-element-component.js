@@ -1,4 +1,4 @@
-const Handlebars = require('handlebars');
+const Mustache = require('mustache');
 const AbstractComponent = require('./abstract-component');
 
 const console = {
@@ -8,7 +8,7 @@ const console = {
 class TrainerListElementComponent extends AbstractComponent {
 
     compile(trainer) {
-        return Handlebars.compile(`
+        return Mustache.render(`
             <div class="media">
                 <div class="media-left">
                     <figure class="image is-48x48">
@@ -24,7 +24,7 @@ class TrainerListElementComponent extends AbstractComponent {
                     </p>
                 </div>
             </div>
-        `)({ trainer });
+        `, { trainer });
     }
 
 }

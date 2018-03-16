@@ -1,4 +1,4 @@
-const Handlebars = require('handlebars');
+const Mustache = require('mustache');
 const AbstractComponent = require('./abstract-component');
 
 const console = {
@@ -8,7 +8,7 @@ const console = {
 class VersionComponent extends AbstractComponent {
 
     compile(version) {
-        return Handlebars.compile(`
+        return Mustache.render(`
             <div class="section">
                 <div class="columns is-mobile is-centered">
                     <div class="column is-narrow">
@@ -19,7 +19,7 @@ class VersionComponent extends AbstractComponent {
                     </div>
                 </div>
             </div>
-        `)({ version });
+        `, { version });
     }
 
 }
