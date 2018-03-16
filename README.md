@@ -4,6 +4,35 @@
 
 ![](http://warsawjs.com/assets/images/logo/logo-transparent-240x240.png)
 
+---
+
+## ✨ Development ✨
+
+<kbd>Copy + Paste</kbd>
+
+```
+npm install
+npm run dev
+```
+
+## :rocket: Deployment :rocket:
+
+<kbd>Copy + Paste</kbd>
+
+```
+git checkout master
+npm version patch
+git push && git push --tags
+```
+
+## :bulb: O czym opowiedzieć? :bulb:
+
+* OAuth
+* GitHub i jego aplikacje
+    - po co są aplikacje?
+    - dlaczego tak pobieramy dane o sobie, zamiast skorzystać z publicznego API?
+* ...
+
 ## Zakres funkcjonalności projektu
 
 1. [x] Prezentacja listy tematów warsztatów
@@ -31,21 +60,18 @@
     - [ ] poziom średni: `local storage`
     - [ ] poziom zaawansowany: `firebase` / `sqlite` / `mongodb` / `azure`
 
-### Zadania dla chętnych:
-
-- [ ] Zabezpieczenie przed wielokrotnym głosowaniem
-- [ ] Edycja wcześniej zgłoszonych przez siebie tematów
-
 ## Krok po kroku
+
+### Etap 1: Scaffold :file_folder:
 
 1. Stworzyć link do logowania via GitHub
 2. Stworzyć formularz do dodawania tematu
 3. Stworzyć listę tematów
 4. Zapisywać dane z wysłanego formularza
 5. Po zapisaniu formularza odświeżyć listę tematów
-6. 
+6. ...
 
-### Autoryzacja via GitHub
+### Etap 2: Autoryzacja via GitHub :octocat:
 
 1. Autoryzacja za pomocą `OAuth 2.0`
 
@@ -58,17 +84,12 @@
 
     - TODO: prezentacja jak wygląda komunikacja z GitHubem
 
-## 📦 Deployment :rocket:
+### :bell: Zadania dla chętnych :bell:
 
-<kbd>Copy + Paste</kbd>
+- [ ] Zabezpieczenie przed wielokrotnym głosowaniem
+- [ ] Edycja wcześniej zgłoszonych przez siebie tematów
 
-```
-git checkout master
-npm version patch
-git push && git push --tags
-```
-
-## Linki
+## Źródła, czyli tam gdzie warto zajrzeć
 
 * OAuth 2.0
     - https://tools.ietf.org/html/rfc6749#section-4.1
@@ -80,11 +101,13 @@ git push && git push --tags
 * Pomocne:
     - Zawijanie tekstu: https://css-tricks.com/almanac/properties/t/text-overflow/
 
-## Biblioteki
+## :package: Biblioteki :package:
 
-* http://handlebarsjs.com/
+* https://github.com/piecioshka/super-event-emitter
 * https://github.com/parcel-bundler/parcel
 * https://github.com/tschaub/gh-pages
+* https://github.com/wycats/handlebars.js/
+* https://github.com/kelektiv/node-uuid
 
 ## License
 
