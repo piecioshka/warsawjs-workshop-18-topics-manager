@@ -6,11 +6,13 @@ const SignInComponent = require('./components/sign-in-component');
 const TopicElementComponent = require('./components/topic-element-component');
 const TopicListComponent = require('./components/topic-list-component');
 const TrainerListComponent = require('./components/trainer-list-component');
+const VersionComponent = require('./components/version-component');
 
 const TopicsManager = require('./models/topics-manager');
 const TrainersManager = require('./models/trainers-manager');
 
 const GitHubHelper = require('./helpers/github-helper');
+const version = require('../package').version;
 
 function renderTopics($app) {
     const topicsManager = new TopicsManager();
@@ -37,7 +39,6 @@ function renderTopics($app) {
             $trainers.render(trainer);
         });
     });
-
 }
 
 function renderSignInPanel($app) {
@@ -58,6 +59,7 @@ function setup() {
     const $app = document.querySelector('#app');
     renderSignInPanel($app);
     renderTopics($app);
+    new VersionComponent($app).render(version);
 }
 
 window.addEventListener('DOMContentLoaded', setup);

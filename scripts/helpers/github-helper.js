@@ -29,11 +29,12 @@ function authorize(code) {
     console.log('authorize', code);
 
     const method = 'POST';
+    const redirectUri = location.href.replace(location.search, '');
     const body = {
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
         code: code,
-        redirect_uri: location.origin
+        redirect_uri: redirectUri
     };
     const queryParams = new URLSearchParams();
     addQueryParams(queryParams, body);

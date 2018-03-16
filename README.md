@@ -58,7 +58,8 @@
 
 1. Instalacja `parcel`
 2. Instalacja `gh-pages`
-3. Uruchomienie `npm run build`
+3. Uruchomienie `npm run build`, aby zbudować aplikację
+4. Uruchomienie `npm run deploy`, aby wrzucić na `GitHub Pages`
 
 ## Linki
 
@@ -71,7 +72,8 @@
 
 ## Biblioteki
 
-* 
+* https://github.com/parcel-bundler/parcel
+* https://github.com/tschaub/gh-pages
 
 ## License
 

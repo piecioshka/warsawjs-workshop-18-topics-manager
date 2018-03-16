@@ -11,7 +11,9 @@
     "scripts": {
         "clear": "rm -rf dist/",
         "clear:all": "rm -rf node_modules/ && npm run clear",
+        "dev": "parcel index.html",
         "build": "parcel build index.html --no-cache --public-url ./",
+        "deploy": "gh-pages -d dist/ -b gh-pages",
         "count": "find . -name '*.js' -not -path './node_modules/*' | xargs wc -l | sort -r"
     },
     "dependencies": {},
@@ -20,6 +22,7 @@
         "gh-pages": "^1.1.0",
         "md5": "^2.2.1",
         "node-sass": "^4.7.2",
+        "parcel-bundler": "^1.6.2",
         "super-event-emitter": "^4.1.6",
         "uuid": "^3.2.1"
     },
