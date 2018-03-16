@@ -56,11 +56,8 @@
 
 ```
 git checkout master
-npm run build           # build distribution package
-npm run deploy          # upload dist/ folder to "gh-pages" branch
 npm version patch
-git push
-git push --tags
+git push && git push --tags
 ```
 
 ## Linki
