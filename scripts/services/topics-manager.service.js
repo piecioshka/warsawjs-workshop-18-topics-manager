@@ -1,20 +1,17 @@
 const uuid = require('uuid');
 
-const MOCK = require('../../mocks/default-list-of-topics');
-
 const console = {
-    log: require('debug')('topics-manager:log'),
-    warn: require('debug')('topics-manager:warn')
+    log: require('debug')('topics-manager:service:log'),
+    info: require('debug')('topics-manager:service:info'),
+    debug: require('debug')('topics-manager:service:debug'),
+    warn: require('debug')('topics-manager:service:warn'),
+    error: require('debug')('topics-manager:service:error')
 };
 
 class TopicsManager {
 
     constructor() {
         this.list = [];
-
-        MOCK.forEach((item) => {
-            this.list.push(item);
-        });
     }
 
     addTopic(topic) {
@@ -56,10 +53,19 @@ class TopicsManager {
         topic.vote++;
     }
 
+    appendList(list) {
+        if (!Array.isArray(list)) {
+            console.warn('List is not an array');
+            return;
+        }
+        this.list = this.list.concat(list);
+    }
+
     getList() {
         return this.list;
     }
 
 }
 
-module.exports = TopicsManager;
+// Wzorzec: Singleton
+window.b = module.exports = new TopicsManager;

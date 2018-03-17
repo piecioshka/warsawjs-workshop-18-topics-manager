@@ -1,5 +1,6 @@
 let ACCESS_TOKEN = null;
 const GITHUB = require('../config').GITHUB;
+const GITHUB_ACCESS_TOKEN = require('../config').STORAGE.GITHUB_ACCESS_TOKEN;
 
 const CORS_PROXY = `https://cors-anywhere.herokuapp.com/`;
 const AUTHORIZE_URL = `https://github.com/login/oauth/authorize`;
@@ -7,16 +8,28 @@ const FETCH_ACCESS_TOKEN_URL = `https://github.com/login/oauth/access_token`;
 const FETCH_PROFILE_URL = `https://api.github.com/user`;
 
 const console = {
-    log: require('debug')('github-auth:service:log'),
-    info: require('debug')('github-auth:service:info'),
-    warn: require('debug')('github-auth:service:warn'),
-    debug: require('debug')('github-auth:service:debug'),
-    error: require('debug')('github-auth:service:error')
+    log: require('debug')('github-auth-my-own:service:log'),
+    info: require('debug')('github-auth-my-own:service:info'),
+    warn: require('debug')('github-auth-my-own:service:warn'),
+    debug: require('debug')('github-auth-my-own:service:debug'),
+    error: require('debug')('github-auth-my-own:service:error')
 };
 
 function redirect(url) {
     console.log('redirect', url);
     location.href = url;
+}
+
+function saveAccessToken() {
+    localStorage.setItem(GITHUB_ACCESS_TOKEN, ACCESS_TOKEN);
+}
+
+function restoreAccessToken() {
+    ACCESS_TOKEN = localStorage.getItem(GITHUB_ACCESS_TOKEN);
+}
+
+function deleteAccessToken() {
+    localStorage.removeItem(GITHUB_ACCESS_TOKEN);
 }
 
 function connect() {
@@ -70,26 +83,40 @@ function authorization() {
 
     const accessCodeGitHub = new URL(location.href).searchParams.get('code');
 
-    if (!accessCodeGitHub) return;
+    if (!accessCodeGitHub) return Promise.resolve(null);
+
+    if (ACCESS_TOKEN) return Promise.resolve(null);
 
     return authentication(accessCodeGitHub)
         .then((accessToken) => {
-            if (!accessToken) return;
+            if (!accessToken) {
+
+                if (accessCodeGitHub) {
+                    connect();
+                }
+
+                return;
+            }
 
             ACCESS_TOKEN = accessToken;
+            saveAccessToken();
         });
 }
 
 // -----------------------------------------------------------------------------
 
-function setup() {
-}
-
 function fetchProfile() {
-    connect();
+    console.log('fetchProfile');
+
+    restoreAccessToken();
 
     return authorization()
         .then(() => {
+            if (!ACCESS_TOKEN) {
+                return Promise.resolve(null);
+            }
+
+
             const queryParams = new URLSearchParams({
                 access_token: ACCESS_TOKEN
             });
@@ -105,7 +132,17 @@ function fetchProfile() {
         });
 }
 
+function signIn() {
+    connect();
+}
+
+function signOut() {
+    deleteAccessToken();
+    location.href = location.href.replace(location.search, '');
+}
+
 module.exports = {
-    setup,
-    fetchProfile
+    fetchProfile,
+    signIn,
+    signOut
 };

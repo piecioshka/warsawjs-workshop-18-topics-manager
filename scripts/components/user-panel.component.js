@@ -17,6 +17,10 @@ class UserPanelComponent extends AbstractComponent {
             if ($signIn) {
                 $signIn.addEventListener('click', this._onClickSignIn.bind(this));
             }
+            const $signOut = this.$el.querySelector('.js-sign-out-via-github');
+            if ($signOut) {
+                $signOut.addEventListener('click', this._onClickSignOut.bind(this));
+            }
         });
     }
 
@@ -41,6 +45,12 @@ class UserPanelComponent extends AbstractComponent {
 
                     <div class="navbar-end">
                         {{ #user }}
+                            <div class="navbar-item js-sign-in">
+                                <a href="#" class="button is-danger js-sign-out-via-github">
+                                    Wyloguj
+                                </a>
+                            </div>
+
                             <a href="https://github.com/{{ user.login }}" class="navbar-item js-user-panel">
                                 <span>{{ user.name }}</span>&nbsp;
                                 <figure class="image is-32x32">
@@ -71,6 +81,11 @@ class UserPanelComponent extends AbstractComponent {
     _onClickSignIn(evt) {
         evt.preventDefault();
         this.emit('user:sign-in');
+    }
+
+    _onClickSignOut(evt) {
+        evt.preventDefault();
+        this.emit('user:sign-out');
     }
 
 }

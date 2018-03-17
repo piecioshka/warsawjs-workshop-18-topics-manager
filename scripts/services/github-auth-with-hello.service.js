@@ -1,6 +1,7 @@
 const GITHUB = require('../config').GITHUB;
 
 const hello = require('hellojs');
+const gitHubAuth = hello('github');
 
 const console = {
     log: require('debug')('github-auth-with-hello:service:log'),
@@ -11,27 +12,47 @@ const console = {
 };
 
 function authorization() {
-    return hello('github').login();
+    console.log('authorization');
+
+    return gitHubAuth.login();
 }
 
 // -----------------------------------------------------------------------------
 
-function setup() {
+function fetchProfile() {
+    console.log('fetchProfile');
+
     hello.init({
         github: GITHUB.CLIENT_ID
     }, {
         redirect_uri: 'http://localhost:1234/'
     });
+
+    const status = gitHubAuth.getAuthResponse();
+
+    if (!status) return Promise.resolve(null);
+
+    return gitHubAuth.api('/me');
 }
 
-function fetchProfile() {
-    return authorization()
+function signIn() {
+    console.log('signIn');
+    authorization()
         .then(() => {
-            return hello('github').api('/me');
+            location.reload(true);
+        });
+}
+
+function signOut() {
+    console.log('signOut');
+    return hello.logout('github')
+        .then(() => {
+            location.reload(true);
         });
 }
 
 module.exports = {
-    setup,
-    fetchProfile
+    fetchProfile,
+    signIn,
+    signOut
 };

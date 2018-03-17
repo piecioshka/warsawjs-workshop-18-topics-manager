@@ -14,15 +14,20 @@
         "dev": "parcel index.html",
         "build": "parcel build index.html --no-cache --public-url ./",
         "deploy": "gh-pages -d dist/ -b gh-pages",
-        "count": "find . -name '*.js' -not -path './node_modules/*' | xargs wc -l | sort -r",
-        "version": "npm run build && npm run deploy"
+        "count": "find scripts -name '*.js' | xargs wc -l | sort -r",
+        "version": "npm run build && npm run deploy",
+        "mock:build": "node data/build.js",
+        "mock:start-server": "node data/start-server.js"
     },
     "dependencies": {},
     "devDependencies": {
-        "hellojs": "^1.16.1",
         "bulma": "^0.6.2",
         "debug": "latest",
+        "faker": "^4.1.0",
         "gh-pages": "^1.1.0",
+        "hellojs": "^1.16.1",
+        "json-schema-faker": "^0.5.0-rc13",
+        "json-server": "^0.12.1",
         "md5": "^2.2.1",
         "mustache": "^2.3.0",
         "node-sass": "^4.7.2",

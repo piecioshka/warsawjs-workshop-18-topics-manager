@@ -10,23 +10,25 @@ const TrainerListElementComponent = require('./components/trainer-list-element.c
 const UserPanelComponent = require('./components/user-panel.component');
 const VersionComponent = require('./components/version.component');
 
-const TopicsManager = require('./models/topics-manager.model');
-const TrainersManager = require('./models/trainers-manager.model');
-
+const StorageRepository = require('./repositories/storage-repository');
+const TopicsManager = require('./services/topics-manager.service');
+const TrainersManager = require('./services/trainers-manager.service');
 const GitHubAuthService = require('./services/github-auth.service');
 const UserService = require('./services/user.service');
 const version = require('../package').version;
 
 const console = {
-    log: require('debug')('main:log')
+    log: require('debug')('main:log'),
+    info: require('debug')('main:info'),
+    debug: require('debug')('main:debug'),
+    warn: require('debug')('main:warn'),
+    error: require('debug')('main:error')
 };
 
 let $app = null;
-let topicsManager = null;
-let trainersManager = null;
 
 function renderTopics() {
-    const topics = topicsManager.getList();
+    const topics = TopicsManager.getList();
     console.log('renderTopics', topics.length);
 
     TopicListComponent.removeElement($app);
@@ -38,24 +40,26 @@ function renderTopics() {
         const $topicsPlaceholder = $app.querySelector('.topics');
         const $topics = new TopicListElementComponent($topicsPlaceholder);
         $topics.on('topic:vote', (topic) => {
-            topicsManager.vote(topic);
+            TopicsManager.vote(topic);
             renderTopics();
+            StorageRepository.save();
         });
         $topics.on('trainer:add', (topic) => {
             if (UserService.isLoggedIn()) {
-                trainersManager.add(UserService.getUser());
-                const status = topicsManager.addTrainer(topic, UserService.getUser());
+                TrainersManager.add(UserService.getUser());
+                const status = TopicsManager.addTrainer(topic, UserService.getUser());
 
                 // Jeśli udało się dodać trenera to odświeżamy listę tematów.
                 if (status) {
                     renderTopics();
+                    StorageRepository.save();
                 }
             }
         });
         $topics.render({ topic, user: UserService.getUser() });
 
         topic.trainers.forEach((trainerId, index) => {
-            const trainer = trainersManager.getById(trainerId);
+            const trainer = TrainersManager.getById(trainerId);
             const $trainerPlaceholder = $topics.$el.querySelector('.trainers');
             const $trainers = new TrainerListElementComponent($trainerPlaceholder);
             $trainers.render(trainer);
@@ -73,11 +77,12 @@ function renderTopicAddForm() {
     if (UserService.isLoggedIn()) {
         const $form = new TopicAddFormComponent($app);
         $form.on('topic:input', ({ name }) => {
-            topicsManager.addTopic({
+            TopicsManager.addTopic({
                 topicName: name,
                 trainerId: UserService.getUser().id
             });
             render();
+            StorageRepository.save();
         });
         $form.render();
     } else {
@@ -89,15 +94,10 @@ function renderUserPanel() {
     console.log('renderUserPanel');
     const $panel = new UserPanelComponent($app);
     $panel.on('user:sign-in', () => {
-        GitHubAuthService.fetchProfile()
-            .then((profile) => {
-                if (profile) {
-                    UserService.signIn(profile);
-                    render();
-                }
-            }, (error) => {
-                console.log('ups...', error);
-            });
+        GitHubAuthService.signIn();
+    });
+    $panel.on('user:sign-out', () => {
+        GitHubAuthService.signOut();
     });
     $panel.render(UserService.getUser());
 }
@@ -111,8 +111,31 @@ function renderVersion() {
 function init() {
     console.log('init');
     $app = document.querySelector('#app');
-    topicsManager = new TopicsManager();
-    trainersManager = new TrainersManager();
+}
+
+function auth() {
+    console.log('auth');
+    return GitHubAuthService.fetchProfile()
+        .then((profile) => {
+            if (profile) {
+                UserService.signIn(profile);
+                TrainersManager.add(UserService.getUser());
+                render();
+            }
+        }, (error) => {
+            console.log('ups...', error);
+        });
+}
+
+function load() {
+    console.log('load');
+    // const MOCK_TOPICS = require('../mocks/mock-topics');
+    // TopicsManager.appendList(MOCK_TOPICS);
+    //
+    // const MOCK_TRAINERS = require('../mocks/mock-trainers');
+    // TrainersManager.appendList(MOCK_TRAINERS);
+
+    return StorageRepository.restore();
 }
 
 function render() {
@@ -126,9 +149,11 @@ function render() {
 
 function setup() {
     console.log('setup');
-    GitHubAuthService.setup();
-    init();
-    render();
+    Promise.resolve()
+        .then(init)
+        .then(auth)
+        .then(load)
+        .then(render);
 }
 
 window.addEventListener('DOMContentLoaded', setup);

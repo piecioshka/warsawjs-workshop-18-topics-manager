@@ -6,12 +6,17 @@ module.exports = {
 
     TOPIC_READY_TO_RELEASE: {
         TRAINERS_COUNT: 2,
-        VOTES_COUNT: 4
+        VOTES_COUNT: 8
     },
 
     UNKNOWN_TRAINER: {
         AVATAR_URL: 'http://via.placeholder.com/48x48?text=.',
         NAME: 'Nieznany',
         LOGIN: ''
+    },
+
+    STORAGE: {
+        DATABASE: 'warsawjs-workshop-18',
+        GITHUB_ACCESS_TOKEN: 'warsawjs-workshop-18-access-token'
     }
 };

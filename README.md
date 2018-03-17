@@ -11,6 +11,12 @@
 <kbd>Copy + Paste</kbd>
 
 ```
+# Opcjonalnie
+npm run mock:build
+npm run mock:start-server
+```
+
+```
 npm install
 npm run dev
 ```
@@ -59,6 +65,8 @@ git push && git push --tags
     - [x] Integracja z GitHub API
         - [x] Własna implementacja autoryzacji
         - [x] Wykorzystanie paczki `hellojs`
+    - [x] Zalogowanie użytkownika
+    - [x] Wylogowanie użytkownika
 
 4. [x] Temat zostaje wyróżniony w sytuacji kiedy zbierze on:
     - [x] min. 3 trenerów
@@ -66,7 +74,8 @@ git push && git push --tags
 
 5. [ ] Dane na temat tematów są zapisywane;
     - [x] poziom początkujący: `in-memory`
-    - [ ] poziom średni: `local storage`
+    - [x] poziom podstawowy: `local storage`
+    - [ ] poziom średni: `json server`
     - [ ] poziom zaawansowany: `firebase` / `sqlite` / `mongodb` / `azure`
 
 ## Krok po kroku
@@ -118,6 +127,13 @@ git push && git push --tags
 * https://github.com/tschaub/gh-pages
 * https://github.com/wycats/handlebars.js/
 * https://github.com/kelektiv/node-uuid
+
+## Mockowanie danych
+
+* http://json-schema-faker.js.org/ - narzędzie, które buduje losowe dane w JSON
+* http://json-schema.org - specyfikacja budowania
+* http://chancejs.com/ - biblioteka zwraca losowe dane w odpowiednim formacie
+* https://github.com/marak/Faker.js/ - budowanie wielu losowych danych
 
 ## License
 
