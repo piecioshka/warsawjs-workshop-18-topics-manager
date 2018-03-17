@@ -1,7 +1,7 @@
 require('../../styles/components/topic-list-element.scss');
 
 const Mustache = require('mustache');
-const AbstractComponent = require('./abstract-component');
+const AbstractComponent = require('./abstract.component');
 const TOPIC_READY_TO_RELEASE = require('../config').TOPIC_READY_TO_RELEASE;
 
 const console = {

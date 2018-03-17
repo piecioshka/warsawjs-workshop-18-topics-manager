@@ -1,7 +1,7 @@
 require('../../styles/components/trainer-list-element.scss');
 
 const Mustache = require('mustache');
-const AbstractComponent = require('./abstract-component');
+const AbstractComponent = require('./abstract.component');
 const UNKNOWN_TRAINER = require('../config').UNKNOWN_TRAINER;
 
 const console = {

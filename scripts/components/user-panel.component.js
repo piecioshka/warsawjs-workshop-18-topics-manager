@@ -1,9 +1,10 @@
 const Mustache = require('mustache');
-const AbstractComponent = require('./abstract-component');
-const GitHubHelper = require('../helpers/github-helper');
+
+const AbstractComponent = require('./abstract.component');
 
 const console = {
-    log: require('debug')('user-panel:component:log')
+    log: require('debug')('user-panel:component:log'),
+    warn: require('debug')('user-panel:component:warn')
 };
 
 class UserPanelComponent extends AbstractComponent {
@@ -69,7 +70,7 @@ class UserPanelComponent extends AbstractComponent {
 
     _onClickSignIn(evt) {
         evt.preventDefault();
-        GitHubHelper.redirectAuthorize();
+        this.emit('user:sign-in');
     }
 
 }

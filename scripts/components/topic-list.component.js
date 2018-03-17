@@ -1,7 +1,7 @@
 require('../../styles/components/topic-list.scss');
 
 const Mustache = require('mustache');
-const AbstractComponent = require('./abstract-component');
+const AbstractComponent = require('./abstract.component');
 
 const console = {
     log: require('debug')('topic-list:component:log')

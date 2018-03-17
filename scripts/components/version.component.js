@@ -1,5 +1,5 @@
 const Mustache = require('mustache');
-const AbstractComponent = require('./abstract-component');
+const AbstractComponent = require('./abstract.component');
 
 const console = {
     log: require('debug')('version:component:log')

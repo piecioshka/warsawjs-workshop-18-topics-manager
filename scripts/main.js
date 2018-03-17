@@ -3,50 +3,27 @@
 require('bulma');
 require('../styles/common.css');
 
-const TopicAddFormComponent = require('./components/topic-add-form-component');
-const TopicListElementComponent = require('./components/topic-list-element-component');
-const TopicListComponent = require('./components/topic-list-component');
-const TrainerListElementComponent = require('./components/trainer-list-element-component');
-const UserPanelComponent = require('./components/user-panel-component');
-const VersionComponent = require('./components/version-component');
+const TopicAddFormComponent = require('./components/topic-add-form.component');
+const TopicListElementComponent = require('./components/topic-list-element.component');
+const TopicListComponent = require('./components/topic-list.component');
+const TrainerListElementComponent = require('./components/trainer-list-element.component');
+const UserPanelComponent = require('./components/user-panel.component');
+const VersionComponent = require('./components/version.component');
 
-const TopicsManager = require('./models/topics-manager');
-const TrainersManager = require('./models/trainers-manager');
+const TopicsManager = require('./models/topics-manager.model');
+const TrainersManager = require('./models/trainers-manager.model');
 
-const GitHubHelper = require('./helpers/github-helper');
+const GitHubAuthService = require('./services/github-auth.service');
+const UserService = require('./services/user.service');
 const version = require('../package').version;
 
 const console = {
     log: require('debug')('main:log')
 };
 
-let user = null;
 let $app = null;
 let topicsManager = null;
 let trainersManager = null;
-
-function setupGitHubAuthorization() {
-    const accessCodeGitHub = new URL(location.href).searchParams.get('code');
-
-    if (accessCodeGitHub) {
-        Promise.resolve()
-            .then(() => {
-                return GitHubHelper.authorize(accessCodeGitHub);
-            })
-            .then(() => {
-                return GitHubHelper.fetchProfile();
-            })
-            .then((gitHubProfile) => {
-                if (gitHubProfile) {
-                    user = gitHubProfile;
-                    render();
-                }
-            })
-            .catch((error) => {
-                console.log('ups...', error);
-            });
-    }
-}
 
 function renderTopics() {
     const topics = topicsManager.getList();
@@ -65,9 +42,9 @@ function renderTopics() {
             renderTopics();
         });
         $topics.on('trainer:add', (topic) => {
-            if (user) {
-                trainersManager.add(user);
-                const status = topicsManager.addTrainer(topic, user);
+            if (UserService.isLoggedIn()) {
+                trainersManager.add(UserService.getUser());
+                const status = topicsManager.addTrainer(topic, UserService.getUser());
 
                 // Jeśli udało się dodać trenera to odświeżamy listę tematów.
                 if (status) {
@@ -75,7 +52,7 @@ function renderTopics() {
                 }
             }
         });
-        $topics.render({ topic, user });
+        $topics.render({ topic, user: UserService.getUser() });
 
         topic.trainers.forEach((trainerId, index) => {
             const trainer = trainersManager.getById(trainerId);
@@ -93,12 +70,12 @@ function renderTopics() {
 function renderTopicAddForm() {
     console.log('renderTopicAddForm');
 
-    if (user) {
+    if (UserService.isLoggedIn()) {
         const $form = new TopicAddFormComponent($app);
         $form.on('topic:input', ({ name }) => {
             topicsManager.addTopic({
                 topicName: name,
-                trainerId: user.id
+                trainerId: UserService.getUser().id
             });
             render();
         });
@@ -111,7 +88,18 @@ function renderTopicAddForm() {
 function renderUserPanel() {
     console.log('renderUserPanel');
     const $panel = new UserPanelComponent($app);
-    $panel.render(user);
+    $panel.on('user:sign-in', () => {
+        GitHubAuthService.fetchProfile()
+            .then((profile) => {
+                if (profile) {
+                    UserService.signIn(profile);
+                    render();
+                }
+            }, (error) => {
+                console.log('ups...', error);
+            });
+    });
+    $panel.render(UserService.getUser());
 }
 
 function renderVersion() {
@@ -138,7 +126,7 @@ function render() {
 
 function setup() {
     console.log('setup');
-    setupGitHubAuthorization();
+    GitHubAuthService.setup();
     init();
     render();
 }

@@ -27,10 +27,17 @@ git push && git push --tags
 
 ## :bulb: O czym opowiedzieć? :bulb:
 
-* OAuth
+* "Autentykacja" (uwierzytelnianie) vs autoryzacja (kontrola dostępu)?
+    - kim jesteś?
+    - co możesz zrobić?
+* Przykłady?
+    - bankowość online
+* OAuth 2.0 - standard w komunikacji między użytkownikiem a serwerem
 * GitHub i jego aplikacje
     - po co są aplikacje?
     - dlaczego tak pobieramy dane o sobie, zamiast skorzystać z publicznego API?
+    - limit autoryzacji z jednego uwierzytelniania = 10
+    - limit autoryzacji będąc uwierzytelnionym = 60
 * ...
 
 ## Zakres funkcjonalności projektu
@@ -50,6 +57,8 @@ git push && git push --tags
     i udostępniają tylko podstawowe dane o sobie.
     - [x] Stworzenie aplikacji autoryzującej
     - [x] Integracja z GitHub API
+        - [x] Własna implementacja autoryzacji
+        - [x] Wykorzystanie paczki `hellojs`
 
 4. [x] Temat zostaje wyróżniony w sytuacji kiedy zbierze on:
     - [x] min. 3 trenerów
@@ -75,7 +84,7 @@ git push && git push --tags
 
 1. Autoryzacja za pomocą `OAuth 2.0`
 
-    - poziom podstawowy: wykorzystać paczkę w `npm`
+    - poziom podstawowy: wykorzystać paczkę `hellojs`
     - poziom zaawansowany: napisać mechanizm komunikujący się z GitHubem
 
 2. Stworzyć aplikację na GitHubie (w celu autoryzacji)
@@ -98,6 +107,7 @@ git push && git push --tags
     - Lista moich aplikacji: https://github.com/settings/developers
     - Stworzenie nowej aplikacji: https://github.com/settings/applications/new
     - Listę aplikacji, które posiadają Twoje credentiale: https://github.com/settings/applications
+    - Limity: http://api.github.com/rate_limit
 * Pomocne:
     - Zawijanie tekstu: https://css-tricks.com/almanac/properties/t/text-overflow/
 

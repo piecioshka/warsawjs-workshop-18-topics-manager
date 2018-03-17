@@ -1,7 +1,7 @@
 require('../../styles/components/topic-add-form.scss');
 
 const Mustache = require('mustache');
-const AbstractComponent = require('./abstract-component');
+const AbstractComponent = require('./abstract.component');
 
 const ENTER_KEY_CODE = 13;
 
