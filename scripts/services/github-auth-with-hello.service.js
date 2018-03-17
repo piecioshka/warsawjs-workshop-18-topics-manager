@@ -25,7 +25,7 @@ function fetchProfile() {
     hello.init({
         github: GITHUB.CLIENT_ID
     }, {
-        redirect_uri: 'http://localhost:1234/'
+        redirect_uri: location.href
     });
 
     const status = gitHubAuth.getAuthResponse();
