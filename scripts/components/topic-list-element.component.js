@@ -30,7 +30,7 @@ class TopicListElementComponent extends AbstractComponent {
         this.topic = topic;
 
         return Mustache.render(`
-            <div class="topic-list-element is-inline-block">
+            <div class="topic-list-element column is-3">
                 <div class="card">
                     <header class="card-header">
                         <p class="card-header-title ellipsis">

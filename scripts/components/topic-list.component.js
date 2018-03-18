@@ -13,7 +13,7 @@ class TopicListComponent extends AbstractComponent {
         return Mustache.render(`
             <div class="section topic-list js-topic-list">
                 <div class="container">
-                    <div class="topics"></div>
+                    <div class="topics columns is-multiline"></div>
                 </div>
             </div>
         `);

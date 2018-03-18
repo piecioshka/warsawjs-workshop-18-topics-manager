@@ -1,6 +1,4 @@
 .topic-list-element {
-    margin: 10px;
-    width: calc(25% - 20px);
     overflow-wrap: break-word;
     vertical-align: top;
 
@@ -8,23 +6,5 @@
         $release-border-color: lighten(gold, 10);
         background: lighten(gold, 47);
         box-shadow: 0 2px 3px $release-border-color, 0 0 0 1px $release-border-color;
-    }
-}
-
-@media (max-width: 1400px) {
-    .topic-list-element {
-        width: calc(33% - 20px);
-    }
-}
-
-@media (max-width: 1200px) {
-    .topic-list-element {
-        width: calc(50% - 20px);
-    }
-}
-
-@media (max-width: 800px) {
-    .topic-list-element {
-        width: calc(100% - 20px);
     }
 }

@@ -116,7 +116,6 @@ function fetchProfile() {
                 return Promise.resolve(null);
             }
 
-
             const queryParams = new URLSearchParams({
                 access_token: ACCESS_TOKEN
             });
@@ -138,6 +137,7 @@ function signIn() {
 
 function signOut() {
     deleteAccessToken();
+    // Usunięcie parametru "code", który zostaje ustawiony przez GitHub API
     location.href = location.href.replace(location.search, '');
 }
 
