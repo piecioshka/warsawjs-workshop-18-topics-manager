@@ -343,7 +343,7 @@ git push && git push --tags
 ## Źródła, czyli tam gdzie warto zajrzeć
 
 * Bulma
-    - https://bulma.io/documentation/
+    - https://bulma.io/documentation/overview/start/
 * OAuth 2.0
     - https://tools.ietf.org/html/rfc6749#section-4.1
     - https://www.youtube.com/watch?v=RyOiUpNSHxo
