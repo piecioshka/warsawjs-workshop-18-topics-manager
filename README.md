@@ -193,7 +193,7 @@ git push && git push --tags
     hello('github').login();
     ```
 
-    Pamiętać: Wyłącz domyślne zachowania linki za pomocą `evt.preventDefault()`.
+    :bulb: *Pamiętać!* Wyłącz domyślne zachowania linki za pomocą `evt.preventDefault()`.
 
 0. Stworzyć funkcję do pobierania profilu użytkownika.
 
