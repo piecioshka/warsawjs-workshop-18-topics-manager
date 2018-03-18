@@ -193,7 +193,7 @@ git push && git push --tags
     hello('github').login();
     ```
 
-    :bulb: *Pamiętać!* Wyłącz domyślne zachowania linki za pomocą `evt.preventDefault()`.
+    :bulb: **Pamiętać!** Wyłącz domyślne zachowania linki za pomocą `evt.preventDefault()`.
 
 0. Stworzyć funkcję do pobierania profilu użytkownika.
 
@@ -203,7 +203,7 @@ git push && git push --tags
 
 0. Nasłuchać na pobranie użytkownika i wyświetlić `login` i `avatar`
 
-    Proponuję stworzyć funkcję `renderUserDetails`.
+    Proponuję stworzyć funkcję `renderUserDetails`.<br/>
     Można wykorzystać dowolny system szablonów, np. `Mustache.js`.
 
 0. Stworzyć link do wylogowania i podłączyć pod niego funkcję:
