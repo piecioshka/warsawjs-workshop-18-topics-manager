@@ -90,7 +90,7 @@ git push && git push --tags
 ### Etap 0: Beforek :beer:
 
 0. Stworzenie
-    - katalogu `warsawjs-workshop-18-topic-manager`
+    - katalogu `warsawjs-workshop-18-topics-manager`
     - a w nim pliku `index.html`
 0. Instalacja `parcel`-a:
 
