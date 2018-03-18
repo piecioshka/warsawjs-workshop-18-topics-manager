@@ -204,12 +204,18 @@ git push && git push --tags
 0. Nasłuchać na pobranie użytkownika i wyświetlić `login` i `avatar`
 
     Proponuję stworzyć funkcję `renderUserDetails`.<br/>
-    Można wykorzystać dowolny system szablonów, np. `Mustache.js`.
+    :star: Wykorzystać dowolny system szablonów, np. `Mustache.js`.
 
-0. Stworzyć link do wylogowania i podłączyć pod niego funkcję:
+0. Stworzyć przycisk do wylogowania i podłączyć pod niego funkcję:
 
     ```js
     hello.logout('github')
+    ```
+    
+0. Odświeżyć stronę po wylogowaniu użytkownika za pomocą:
+
+    ```js
+    location.reload(true);
     ```
 
 0. Pobierać użytkownika od razu na starcie aplikacji.
