@@ -326,14 +326,14 @@ git push && git push --tags
     console.log(map);
     ```
 
-0. Odświeżyć listę tematów.
-
-    Proponuję stworzyć funkcję `renderTopics`.
-    Można wykorzystać dowolny system szablonów, np. `Mustache.js`.
-
 0. Wyczyścić pola formularza.
 
     Proponuję wykorzystać funkcję `$form.reset()`.
+
+0. Odświeżyć listę tematów.
+
+    Proponuję stworzyć funkcję `renderTopics`.<br/>
+    :star: Można wykorzystać dowolny system szablonów, np. `Mustache.js`.
 
 0. :star: Zadania dodatkowe:
 
