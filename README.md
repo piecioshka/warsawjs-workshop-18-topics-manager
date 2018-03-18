@@ -100,7 +100,7 @@ git push && git push --tags
 
     parcel index.html
     
-0. :start: Zadania dodatkowe:
+0. :star: Zadania dodatkowe:
 
     - Stworzenie zadania `npm run dev` w pliku `package.json`, które będzie uruchamiać `parcel`-a 
 
