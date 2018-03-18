@@ -92,6 +92,11 @@ git push && git push --tags
 0. Stworzenie
     - katalogu `warsawjs-workshop-18-topics-manager`
     - a w nim pliku `index.html`
+
+0. Stworzyć plik `package.json`
+
+    npm init -f
+
 0. Instalacja `parcel`-a:
 
     npm i parcel-bundler
