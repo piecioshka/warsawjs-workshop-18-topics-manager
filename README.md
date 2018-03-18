@@ -95,15 +95,27 @@ git push && git push --tags
 
 0. Stworzyć plik `package.json`
 
+    ```
     npm init -f
+    ```
 
 0. Instalacja `parcel`-a:
 
+    ```
     npm i parcel-bundler
+    ```
 
 0. Uruchomienie polecenie, które stworzy możliwość podgląda w przeglądarce:
 
-    parcel index.html
+    ```
+    npx parcel index.html
+    ```
+    
+    albo
+    
+    ```
+    ./node_modules/.bin/parcel index.html
+    ```
     
 0. :star: Zadania dodatkowe:
 
