@@ -119,14 +119,23 @@ git push && git push --tags
     
 0. :star: Zadania dodatkowe:
 
-    - Stworzenie zadania `npm run dev` w pliku `package.json`, które będzie uruchamiać `parcel`-a 
+    - Stworzenie zadania `npm run dev` w pliku `package.json`, które będzie uruchamiać
+    
+        ```
+        parcel index.html
+        ```
+    
+    - Stworzyć plik `.gitignore` z katalogiem `.cache/`
 
 ### Etap 1: Scaffold :file_folder:
 
 0. Stworzyć plik `scripts/main.js`
+0. Osadzić skrypt w pliku `index.html`
 0. Zainstalować paczkę `bulma` (oraz jej największą zależność `node-sass`):
 
+    ```
     npm i bulma node-sass
+    ```
 
 0. Dodać paczkę `bulma` w pliku `main.js` za pomocą fn `require`
 0. Stworzyć nagłówek strony
@@ -165,7 +174,9 @@ git push && git push --tags
 
 0. Zainstalować paczkę `hellojs`
 
+    ```
     npm i hellojs
+    ```
 
 0. Dodać paczkę `hellojs` w pliku `main.js` za pomocą fn `require`
 0. Skonfigurować `hellojs` za pomocą `client_id`
