@@ -218,7 +218,7 @@ git push && git push --tags
     location.reload(true);
     ```
 
-0. Pobierać użytkownika od razu na starcie aplikacji.
+0. Pobierać użytkownika od razu na starcie aplikacji
 
     Zabezpieczyć się przed brakiem danych za pomocą:
 
@@ -238,29 +238,34 @@ git push && git push --tags
 0. Stworzyć listę tematów z nieprawdziwymi danymi, np.
     
     ```html
-    <div class="columns is-multiline">
+    <section class="section">
+        <h1 class="title">Zgłoszone tematy</h1>
+        <h2 class="subtitle">Zagłosuj na temat, aby został wkrótce zrealizowany</h2>
     
-        <div class="column is-3">
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        "Temat nr. 1"
-                    </p>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        Opis tematu...
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="#" class="card-footer-item">Zagłosuj</a>
-                    <a href="#" class="card-footer-item">Chcę być trenerem</a>
-                </footer>
-            </div>
-        </div>
+        <div class="columns is-multiline">
         
-        ...
-    </div>
+            <div class="column is-3">
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            "Temat nr. 1"
+                        </p>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            Opis tematu...
+                        </div>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="#" class="card-footer-item">Zagłosuj</a>
+                        <a href="#" class="card-footer-item">Chcę być trenerem</a>
+                    </footer>
+                </div>
+            </div>
+
+            ...
+        </div>
+    </section>
     ```
 
 0. Stworzyć formularz do dodawania tematu, np.
