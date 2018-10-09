@@ -31,8 +31,8 @@ class UserPanelComponent extends AbstractComponent {
                     <div class="navbar-start">
                         <a href="./" class="navbar-item">
                             <figure class="image is-32x32">
-                                <img 
-                                    src="https://warsawjs.com/assets/images/logo/logo-transparent-240x240.png"
+                                <img
+                                    src="images/logo-transparent-240x240.png"
                                     alt=""
                                 />
                             </figure>
@@ -54,14 +54,14 @@ class UserPanelComponent extends AbstractComponent {
                             <a href="https://github.com/{{ user.login }}" class="navbar-item js-user-panel">
                                 <span>{{ user.name }}</span>&nbsp;
                                 <figure class="image is-32x32">
-                                    <img 
+                                    <img
                                         src="{{ user.avatar_url }}"
                                         alt="{{ user.login }}"
                                     />
                                 </figure>
                             </a>
                         {{ /user }}
-    
+
                         {{ ^user }}
                             <div class="navbar-item js-sign-in">
                                 <a href="#" class="button is-warning js-sign-in-via-github">

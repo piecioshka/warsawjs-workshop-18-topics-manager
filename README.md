@@ -1,8 +1,8 @@
-# warsawjs-workshop-18-topics-manager 
+# warsawjs-workshop-18-topics-manager
 
 > Aplikacja stworzona na potrzeby WarsawJS Workshop #18
 
-![](http://warsawjs.com/assets/images/logo/logo-transparent-240x240.png)
+![](images/logo-transparent-240x240.png)
 
 ---
 
@@ -10,13 +10,13 @@
 
 <kbd>Copy + Paste</kbd>
 
-```
+```bash
 # Opcjonalnie
 npm run mock:build
 npm run mock:start-server
 ```
 
-```
+```bash
 npm install
 npm run dev
 ```
@@ -25,7 +25,7 @@ npm run dev
 
 <kbd>Copy + Paste</kbd>
 
-```
+```bash
 git checkout master
 npm version patch
 git push && git push --tags
@@ -110,21 +110,21 @@ git push && git push --tags
     ```
     npx parcel index.html
     ```
-    
+
     albo
-    
+
     ```
     ./node_modules/.bin/parcel index.html
     ```
-    
+
 0. :star: Zadania dodatkowe:
 
     - Stworzenie zadania `npm run dev` w pliku `package.json`, które będzie uruchamiać
-    
+
         ```
         parcel index.html
         ```
-    
+
     - Stworzyć plik `.gitignore` z katalogiem `.cache/`
 
 ### Etap 1: Scaffold :file_folder:
@@ -211,7 +211,7 @@ git push && git push --tags
     ```js
     hello.logout('github')
     ```
-    
+
 0. Odświeżyć stronę po wylogowaniu użytkownika za pomocą:
 
     ```js
@@ -228,7 +228,7 @@ git push && git push --tags
 
 0. Stworzyć plik `config.js` i przenieść do niego konfigurację zw. z GitHubem
 
-0. :star: Zadania dodatkowe: 
+0. :star: Zadania dodatkowe:
 
     - Pokazywanie przycisku "Zaloguj" tylko dla niezalogowanego użytkownika
     - Pokazywanie przycisku "Wyloguj" tylko dla zalogowanego użytkownika
@@ -236,14 +236,14 @@ git push && git push --tags
 ### Etap 3: Dodawanie tematu
 
 0. Stworzyć listę tematów z nieprawdziwymi danymi, np.
-    
+
     ```html
     <section class="section">
         <h1 class="title">Zgłoszone tematy</h1>
         <h2 class="subtitle">Zagłosuj na temat, aby został wkrótce zrealizowany</h2>
-    
+
         <div class="columns is-multiline">
-        
+
             <div class="column is-3">
                 <div class="card">
                     <header class="card-header">
@@ -288,7 +288,7 @@ git push && git push --tags
                                     <input class="input" type="text" name="topic" required/>
                                 </div>
                             </div>
-    
+
                             <div class="field">
                                 <label class="label">
                                     <sup class="has-text-danger">*</sup> Opis
@@ -297,7 +297,7 @@ git push && git push --tags
                                     <textarea class="textarea" name="description" required></textarea>
                                 </div>
                             </div>
-    
+
                             <div class="field is-grouped">
                                 <div class="control">
                                     <button class="button is-link">Prześlij</button>
@@ -317,7 +317,7 @@ git push && git push --tags
 0. Zapisywać w `in-memory storage` dane z wysłanego formularza
 
     Do przechowywania tematów proponuję wykorzystać kolekcję typu `Set`.
-    
+
     Do pobierania danych z formularza polecam wykorzystać:
     ```js
     const $form = document.querySelector('.js-form-add-topic');
