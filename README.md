@@ -2,7 +2,7 @@
 
 > Aplikacja stworzona na potrzeby WarsawJS Workshop #18
 
-![](images/logo-transparent-240x240.png)
+![](images/logo-warsawjs-transparent-240x240.png)
 
 ---
 

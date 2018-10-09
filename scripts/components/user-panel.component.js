@@ -32,7 +32,7 @@ class UserPanelComponent extends AbstractComponent {
                         <a href="./" class="navbar-item">
                             <figure class="image is-32x32">
                                 <img
-                                    src="images/logo-transparent-240x240.png"
+                                    src="images/logo-warsawjs-transparent-240x240.png"
                                     alt=""
                                 />
                             </figure>
