@@ -46,46 +46,46 @@ git push && git push --tags
     - limit autoryzacji będąc uwierzytelnionym = 60
 * ...
 
-## Zakres funkcjonalności projektu
+## Features
 
-* [x] Prezentacja listy tematów warsztatów
+* :white_check_mark: Prezentacja listy tematów warsztatów
 
-* [x] Pojedynczy temat zawiera:
-    - [x] Tytuł warsztatu
-    - [x] Lista osób, którzy zgłosili się jako trenerzy
-        - [x] Autor (pierwszy trener) tematu jest odpowiednio wyróżniony
-    - [x] Przyciski:
-        - [x] Do głosowania na temat przez społeczność (np. serduszko)
-        - [ ] Zabezpieczenie przed wielokrotnym głosowaniem
-        - [x] Do zapisania kolejnego trenera
-            - [x] Zabezpieczenie przed wielokrotnym zapisaniem
+* :white_check_mark: Pojedynczy temat zawiera:
+    - :white_check_mark: Tytuł warsztatu
+    - :white_check_mark: Lista osób, którzy zgłosili się jako trenerzy
+        - :white_check_mark: Autor (pierwszy trener) tematu jest odpowiednio wyróżniony
+    - :white_check_mark: Przyciski:
+        - :white_check_mark: Do głosowania na temat przez społeczność (np. serduszko)
+        - :no_entry: Zabezpieczenie przed wielokrotnym głosowaniem
+        - :white_check_mark: Do zapisania kolejnego trenera
+            - :white_check_mark: Zabezpieczenie przed wielokrotnym zapisaniem
 
-* [x] Formularza dodawania tematu
-    - [x] Prezentacja dla zalogowanego użytkownika
-    - [x] Resetowanie po wysłaniu formularza
-    - [x] Zapisanie danych z formularza
-    - [ ] Edycja wcześniej zgłoszonych przez siebie tematów
+* :white_check_mark: Formularza dodawania tematu
+    - :white_check_mark: Prezentacja dla zalogowanego użytkownika
+    - :white_check_mark: Resetowanie po wysłaniu formularza
+    - :white_check_mark: Zapisanie danych z formularza
+    - :no_entry: Edycja wcześniej zgłoszonych przez siebie tematów
 
-* [x] Osoby zgłaszające się jako trenerzy autoryzują się przez GitHuba
+* :white_check_mark: Osoby zgłaszające się jako trenerzy autoryzują się przez GitHuba
     i udostępniają tylko podstawowe dane o sobie.
-    - [x] Stworzenie aplikacji autoryzującej
-    - [x] Integracja z GitHub API
-        - [x] Własna implementacja autoryzacji
-        - [x] Wykorzystanie paczki `hellojs`
-    - [x] Zalogowanie użytkownika
-    - [x] Wylogowanie użytkownika
+    - :white_check_mark: Stworzenie aplikacji autoryzującej
+    - :white_check_mark: Integracja z GitHub API
+        - :white_check_mark: Własna implementacja autoryzacji
+        - :white_check_mark: Wykorzystanie paczki `hellojs`
+    - :white_check_mark: Zalogowanie użytkownika
+    - :white_check_mark: Wylogowanie użytkownika
 
-* [x] Temat zostaje wyróżniony w sytuacji kiedy zbierze on:
-    - [x] min. 3 trenerów
-    - [x] min. 40 uczestników (lajków)
+* :white_check_mark: Temat zostaje wyróżniony w sytuacji kiedy zbierze on:
+    - :white_check_mark: min. 3 trenerów
+    - :white_check_mark: min. 40 uczestników (lajków)
 
-* [ ] Tematy zapisywane są w:
-    - [x] poziom początkujący: `in-memory`
-    - [x] poziom podstawowy: `local storage`
-    - [ ] poziom średni: `json server`
-    - [ ] poziom zaawansowany: `firebase` / `sqlite` / `mongodb` / `azure`
+* :no_entry: Tematy zapisywane są w:
+    - :white_check_mark: poziom początkujący: `in-memory`
+    - :white_check_mark: poziom podstawowy: `local storage`
+    - :no_entry: poziom średni: `json server`
+    - :no_entry: poziom zaawansowany: `firebase` / `sqlite` / `mongodb` / `azure`
 
-## Krok po kroku
+## Krok po kroku 👣
 
 ### Etap 0: Beforek :beer:
 
