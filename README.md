@@ -1,10 +1,6 @@
 # warsawjs-workshop-18-topics-manager
 
-> Aplikacja stworzona na potrzeby WarsawJS Workshop #18
-
-![](images/logo-warsawjs-transparent-240x240.png)
-
----
+⛩️ WarsawJS Workshop #18 — JavaScript (Intermediate Level) — Topics Manager
 
 ## ✨ Development ✨
 
