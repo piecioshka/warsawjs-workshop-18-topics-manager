@@ -1,6 +1,6 @@
 # warsawjs-workshop-18-topics-manager
 
-⛩️ WarsawJS Workshop #18 — JavaScript (Intermediate Level) — Topics Manager
+⛩️ WarsawJS Workshop #18 — JavaScript (Intermediate Level)
 
 ## ✨ Development ✨
 
