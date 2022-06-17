@@ -83,7 +83,7 @@ git push && git push --tags
 
 ## Krok po kroku 👣
 
-### Etap 0: Beforek :beer:
+### Etap 0: Setup
 
 0. Stworzenie
     - katalogu `warsawjs-workshop-18-topics-manager`
@@ -258,7 +258,6 @@ git push && git push --tags
                     </footer>
                 </div>
             </div>
-
             ...
         </div>
     </section>
@@ -347,7 +346,7 @@ git push && git push --tags
 
 0. ...
 
-## Źródła, czyli tam gdzie warto zajrzeć
+## Polecane źródła
 
 * Bulma
     - https://bulma.io/documentation/overview/start/
@@ -358,7 +357,7 @@ git push && git push --tags
     - Lista moich aplikacji: https://github.com/settings/developers
     - Stworzenie nowej aplikacji: https://github.com/settings/applications/new
     - Listę aplikacji, które posiadają Twoje credentiale: https://github.com/settings/applications
-    - Limity: http://api.github.com/rate_limit
+    - Limity: https://api.github.com/rate_limit
     - Pomoc w zakładaniu aplikacji:
         - https://developer.github.com/apps/building-oauth-apps/
         - https://developer.github.com/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps/
@@ -375,9 +374,9 @@ git push && git push --tags
 
 ## Mockowanie danych
 
-* http://json-schema-faker.js.org/ - narzędzie, które buduje losowe dane w JSON
-* http://json-schema.org - specyfikacja budowania
-* http://chancejs.com/ - biblioteka zwraca losowe dane w odpowiednim formacie
+* https://json-schema-faker.js.org/ - narzędzie, które buduje losowe dane w JSON
+* https://json-schema.org - specyfikacja budowania
+* https://chancejs.com/ - biblioteka zwraca losowe dane w odpowiednim formacie
 * https://github.com/marak/Faker.js/ - budowanie wielu losowych danych
 
 ## License
