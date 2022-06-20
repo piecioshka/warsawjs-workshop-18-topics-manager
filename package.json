@@ -21,9 +21,9 @@
     },
     "dependencies": {},
     "devDependencies": {
+        "@faker-js/faker": "^7.3.0",
         "bulma": "^0.6.2",
         "debug": "latest",
-        "faker": "^4.1.0",
         "gh-pages": "^2.0.1",
         "hellojs": "^1.16.1",
         "json-schema-faker": "^0.5.0-rc13",

@@ -1,7 +1,7 @@
 'use strict';
 
 const jsf = require('json-schema-faker');
-jsf.extend('faker', () => require('faker'));
+jsf.extend('faker', () => require('@faker-js/faker'));
 const schema = require('./schema.json');
 const sample = jsf(schema);
 const fs = require('fs');
