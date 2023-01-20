@@ -146,8 +146,6 @@ git push && git push --tags
     - poziom podstawowy: wykorzystać paczkę `hellojs`
     - poziom zaawansowany: napisać mechanizm komunikujący się z GitHubem
 
-    - TODO: prezentacja jak wygląda komunikacja z GitHubem
-
 0. Wejdź na stronę: https://github.com/settings/applications/new
 0. Stwórz nową aplikację. Poniżej opis pól:
     - `Application name` - dowolna nazwa (nie ma znaczenia)
