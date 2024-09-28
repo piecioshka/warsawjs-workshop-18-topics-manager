@@ -127,10 +127,10 @@ git push && git push --tags
 
 0. Stworzyć plik `scripts/main.js`
 0. Osadzić skrypt w pliku `index.html`
-0. Zainstalować paczkę `bulma` (oraz jej największą zależność `node-sass`):
+0. Zainstalować paczkę `bulma`:
 
     ```
-    npm i bulma node-sass
+    npm i bulma
     ```
 
 0. Dodać paczkę `bulma` w pliku `main.js` za pomocą fn `require`

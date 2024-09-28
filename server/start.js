@@ -1,4 +1,4 @@
-const PATH = "data/database.json";
+const PATH = "server/database.json";
 const PORT = process.env.PORT || 2095;
 
 const jsonServer = require("json-server");

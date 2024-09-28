@@ -3,6 +3,6 @@ npm-debug.log
 
 .cache/
 coverage/
-data/database.json
+server/database.json
 dist/
 .vercel

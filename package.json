@@ -13,29 +13,29 @@
         "clear:all": "rm -rf node_modules/ && npm run clear",
         "dev": "parcel client/index.html",
         "build": "parcel build client/index.html --no-cache --public-url ./",
-        "deploy": "cross-env NODE_DEBUG=gh-pages gh-pages -d dist/ -b gh-pages",
-        "mock:build": "node data/build.js",
-        "mock:start": "node data/start.js"
+        "deploy": "vercel --prod",
+        "mock:build": "node server/build.js",
+        "mock:start": "node server/start.js"
     },
-    "dependencies": {},
     "devDependencies": {
-        "@faker-js/faker": "^7.3.0",
-        "bulma": "^0.6.2",
-        "cross-env": "^7.0.3",
+        "@faker-js/faker": "^9.0.3",
+        "bulma": "^1.0.2",
         "debug": "latest",
-        "gh-pages": "^2.0.1",
         "hellojs": "^1.16.1",
         "json-schema-faker": "^0.5.0-rc13",
-        "json-server": "^0.14.0",
+        "json-server": "^0.17.4",
         "md5": "^2.2.1",
-        "mustache": "^2.3.0",
-        "node-sass": "^4.9.3",
+        "mustache": "^4.2.0",
         "parcel-bundler": "^1.10.2",
+        "sass": "^1.79.4",
         "super-event-emitter": "^4.1.6",
-        "uuid": "^3.2.1"
+        "uuid": "^10.0.0"
     },
     "repository": {
         "type": "git",
         "url": "git@github.com:piecioshka/warsawjs-workshop-18-topics-manager.git"
+    },
+    "engines": {
+        "node": "18.x"
     }
 }
