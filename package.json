@@ -15,7 +15,7 @@
         "build": "parcel build client/index.html --no-cache --public-url ./",
         "deploy": "vercel --prod",
         "mock:build": "node server/build.js",
-        "mock:start": "node server/start.js"
+        "start": "node server/start.js"
     },
     "devDependencies": {
         "@faker-js/faker": "^9.0.3",
@@ -27,6 +27,7 @@
         "md5": "^2.2.1",
         "mustache": "^4.2.0",
         "parcel-bundler": "^1.10.2",
+        "parcel-plugin-static-files-copy": "^2.6.0",
         "sass": "^1.79.4",
         "super-event-emitter": "^4.1.6",
         "uuid": "^10.0.0",
@@ -38,5 +39,17 @@
     },
     "engines": {
         "node": "18.x"
+    },
+    "staticFiles": {
+        "staticPath": [
+            {
+                "staticPath": "client/images",
+                "staticOutDir": "images"
+            },
+            {
+                "staticPath": "client/mocks",
+                "staticOutDir": "mocks"
+            }
+        ]
     }
 }

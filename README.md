@@ -9,7 +9,7 @@
 ```bash
 # Opcjonalnie
 npm run mock:build
-npm run mock:start
+npm run start
 ```
 
 ```bash
