@@ -11,13 +11,11 @@
     "scripts": {
         "clear": "rm -rf dist/ .cache/",
         "clear:all": "rm -rf node_modules/ && npm run clear",
-        "dev": "parcel index.html",
-        "build": "parcel build index.html --no-cache --public-url ./",
+        "dev": "parcel client/index.html",
+        "build": "parcel build client/index.html --no-cache --public-url ./",
         "deploy": "cross-env NODE_DEBUG=gh-pages gh-pages -d dist/ -b gh-pages",
-        "count": "find scripts -name '*.js' | xargs wc -l | sort -r",
-        "version": "npm run build && npm run deploy",
         "mock:build": "node data/build.js",
-        "mock:start-server": "node data/start-server.js"
+        "mock:start": "node data/start.js"
     },
     "dependencies": {},
     "devDependencies": {
