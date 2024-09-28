@@ -15,7 +15,7 @@ const TopicsManager = require('./services/topics-manager.service');
 const TrainersManager = require('./services/trainers-manager.service');
 const GitHubAuthService = require('./services/github-auth.service');
 const UserService = require('./services/user.service');
-const version = require('../package').version;
+const version = require('../../package').version;
 
 const console = {
     log: require('debug')('main:log'),
