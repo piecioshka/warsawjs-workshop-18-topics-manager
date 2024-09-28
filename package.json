@@ -13,7 +13,7 @@
         "clear:all": "rm -rf node_modules/ && npm run clear",
         "dev": "parcel index.html",
         "build": "parcel build index.html --no-cache --public-url ./",
-        "deploy": "gh-pages -d dist/ -b gh-pages",
+        "deploy": "cross-env NODE_DEBUG=gh-pages gh-pages -d dist/ -b gh-pages",
         "count": "find scripts -name '*.js' | xargs wc -l | sort -r",
         "version": "npm run build && npm run deploy",
         "mock:build": "node data/build.js",
@@ -23,6 +23,7 @@
     "devDependencies": {
         "@faker-js/faker": "^7.3.0",
         "bulma": "^0.6.2",
+        "cross-env": "^7.0.3",
         "debug": "latest",
         "gh-pages": "^2.0.1",
         "hellojs": "^1.16.1",
