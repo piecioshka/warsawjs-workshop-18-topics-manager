@@ -29,7 +29,8 @@
         "parcel-bundler": "^1.10.2",
         "sass": "^1.79.4",
         "super-event-emitter": "^4.1.6",
-        "uuid": "^10.0.0"
+        "uuid": "^10.0.0",
+        "vercel": "^37.6.0"
     },
     "repository": {
         "type": "git",

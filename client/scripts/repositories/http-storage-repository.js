@@ -1,7 +1,6 @@
 const TopicsManager = require('../services/topics-manager.service');
 const TrainersManager = require('../services/trainers-manager.service');
-
-const URL = 'http://localhost:2095/';
+const SERVER_URL = require('../config').SERVER_URL;
 
 const headers = new Headers({
     'Content-Type': 'application/json'
@@ -15,14 +14,14 @@ class HttpStorageRepository {
 
         Promise.resolve()
             .then(() => {
-                return fetch(`${URL}topics`, {
+                return fetch(`${SERVER_URL}topics`, {
                     method: 'PUT',
                     body: JSON.stringify({ topics }),
                     headers
                 });
             })
             .then(() => {
-                return fetch(`${URL}trainers`, {
+                return fetch(`${SERVER_URL}trainers`, {
                     method: 'PUT',
                     body: JSON.stringify(trainers),
                     headers
@@ -31,7 +30,7 @@ class HttpStorageRepository {
     }
 
     restore() {
-        return fetch(`${URL}db`)
+        return fetch(`${SERVER_URL}db`)
             .then((response) => response.json())
             .then((database) => {
                 if (!database) {

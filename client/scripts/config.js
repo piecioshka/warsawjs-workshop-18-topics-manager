@@ -1,4 +1,6 @@
 module.exports = {
+    SERVER_URL: process.env.SERVER_URL || 'http://localhost:2095/',
+
     GITHUB: {
         CLIENT_ID: `818f8c60795bd17bc476`,
         CLIENT_SECRET: `9a84fe785140a718847e579da45be0ce67e71f96`
