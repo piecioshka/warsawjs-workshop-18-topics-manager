@@ -7,20 +7,16 @@ const PATH = path.join(__dirname, "database.json");
 const jsonServer = require("json-server");
 const app = jsonServer.create();
 
-// Middleware: static files
 const middlewares = jsonServer.defaults({
     static: path.join(__dirname, "..", "dist"),
 });
-
 app.use(middlewares);
 
-// Middleware: rewrite paths
 const rewriter = jsonServer.rewriter({
     "/api/*": "/$1",
 });
 app.use(rewriter);
 
-// Middleware: router
 const router = jsonServer.router(PATH);
 app.use(router);
 
