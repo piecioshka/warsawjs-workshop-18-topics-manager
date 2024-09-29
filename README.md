@@ -7,8 +7,7 @@
 <kbd>Copy + Paste</kbd>
 
 ```bash
-# Opcjonalnie
-npm run mock:build
+npm run build:server
 npm run start
 ```
 
@@ -361,6 +360,7 @@ git push && git push --tags
         - https://developer.github.com/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps/
 * Pomocne:
     - Zawijanie tekstu: https://css-tricks.com/almanac/properties/t/text-overflow/
+    - Deploy JSON Server to Vercel: https://github.com/kitloong/json-server-vercel
 
 ## :package: Biblioteki :package:
 

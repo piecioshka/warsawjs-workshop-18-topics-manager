@@ -1,5 +1,5 @@
 module.exports = {
-    SERVER_URL: process.env.SERVER_URL || 'http://localhost:2095/',
+    SERVER_URL: '/api/',
 
     GITHUB: {
         CLIENT_ID: `818f8c60795bd17bc476`,

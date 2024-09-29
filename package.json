@@ -8,14 +8,16 @@
         "email": "piecioshka@gmail.com",
         "url": "https://piecioshka.pl/"
     },
+    "main": "api/server.js",
     "scripts": {
-        "clear": "rm -rf dist/ .cache/",
-        "clear:all": "rm -rf node_modules/ && npm run clear",
-        "dev": "parcel client/index.html",
-        "build": "parcel build client/index.html --no-cache --public-url ./",
+        "build:client": "parcel build client/index.html --no-cache --no-source-maps --no-content-hash --public-url ./",
+        "watch": "parcel client/index.html",
+        "build": "node api/build.js",
         "deploy": "vercel --prod",
-        "mock:build": "node server/build.js",
-        "start": "node server/start.js"
+        "start": "node api/server.js"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.5"
     },
     "devDependencies": {
         "@faker-js/faker": "^9.0.3",
