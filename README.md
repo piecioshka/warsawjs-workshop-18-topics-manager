@@ -2,7 +2,11 @@
 
 ⛩️ WarsawJS Workshop #18 — JavaScript (Intermediate Level)
 
-## ✨ Development ✨
+## Preview 🎉
+
+<https://warsawjs-workshop-18-topics-manager.vercel.app/>
+
+## Development 🛠️
 
 <kbd>Copy + Paste</kbd>
 
@@ -16,7 +20,7 @@ npm install
 npm run dev
 ```
 
-## :rocket: Deployment :rocket:
+## Deployment 🚀
 
 <kbd>Copy + Paste</kbd>
 
