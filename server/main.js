@@ -25,7 +25,7 @@ const router = jsonServer.router(PATH);
 app.use(router);
 
 app.listen(PORT, function () {
-    console.log(`JSON Server is running at http://localhost:${PORT}`);
+    console.log(`JSON Server is running at https://localhost:${PORT}`);
 });
 
 module.exports = app;

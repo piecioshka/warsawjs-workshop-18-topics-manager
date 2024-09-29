@@ -14,14 +14,14 @@ class TrainerListElementComponent extends AbstractComponent {
         const avatar = (trainer && trainer.avatar_url) || UNKNOWN_TRAINER.AVATAR_URL;
         const name = (trainer && trainer.name) || UNKNOWN_TRAINER.NAME;
         const login = (trainer && trainer.login) || UNKNOWN_TRAINER.LOGIN;
-        const profile_url = `http://github.com/${login}`;
+        const profile_url = `https://github.com/${login}`;
 
         return Mustache.render(`
             <div class="media trainer-list-element">
                 <div class="media-left">
                     <figure class="image is-48x48">
                         <a href="{{ profile_url }}">
-                        
+
                             <img
                                     src="{{ avatar }}"
                                     alt=""
