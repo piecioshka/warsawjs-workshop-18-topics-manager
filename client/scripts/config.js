@@ -12,7 +12,7 @@ module.exports = {
     },
 
     UNKNOWN_TRAINER: {
-        AVATAR_URL: 'https://via.placeholder.com/48x48?text=.',
+        AVATAR_URL: 'https://via.placeholder.com/48x48?text=USER',
         NAME: 'Nieznany',
         LOGIN: ''
     },
