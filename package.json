@@ -8,13 +8,13 @@
         "email": "piecioshka@gmail.com",
         "url": "https://piecioshka.pl/"
     },
-    "main": "api/server.js",
+    "main": "server/main.js",
     "scripts": {
         "build:client": "parcel build client/index.html --no-cache --no-source-maps --no-content-hash --public-url ./",
         "watch": "parcel client/index.html",
-        "build": "node api/build.js",
+        "build": "node server/build.js",
         "deploy": "vercel --prod",
-        "start": "node api/server.js"
+        "start": "node server/main.js"
     },
     "dependencies": {
         "dotenv": "^16.4.5"

@@ -7,7 +7,8 @@
     "properties": {
         "topics": {
             "type": "array",
-            "minItems": 2,
+            "minItems": 3,
+            "maxItems": 3,
             "items": {
                 "type": "object",
                 "required": [
@@ -45,6 +46,7 @@
         "trainers": {
             "type": "array",
             "minItems": 2,
+            "maxItems": 5,
             "items": {
                 "type": "object",
                 "required": [
