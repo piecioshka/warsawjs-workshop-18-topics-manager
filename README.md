@@ -8,26 +8,20 @@
 
 ## Development 🛠️
 
-<kbd>Copy + Paste</kbd>
-
 ```bash
+npm install
+npm run dev
 npm run build:server
 npm run start
 ```
 
-```bash
-npm install
-npm run dev
-```
-
 ## Deployment 🚀
-
-<kbd>Copy + Paste</kbd>
 
 ```bash
 git checkout master
-npm version patch
-git push && git push --tags
+npm version patch # options: major, minor, patch
+git push
+git push --tags
 ```
 
 ## :bulb: O czym opowiedzieć? :bulb:
