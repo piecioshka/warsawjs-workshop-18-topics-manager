@@ -10,7 +10,6 @@
 
 ```bash
 npm install
-npm run dev
 npm run build:server
 npm run start
 ```
@@ -112,7 +111,7 @@ git push --tags
 
 0. :star: Zadania dodatkowe:
 
-    - Stworzenie zadania `npm run dev` w pliku `package.json`, które będzie uruchamiać
+    - Stworzenie zadania `npm run watch` w pliku `package.json`, które będzie uruchamiać
 
         ```
         parcel index.html
