@@ -1,11 +1,12 @@
 const uuid = require('uuid');
+const debug = require('debug');
 
 const console = {
-    log: require('debug')('topics-manager:service:log'),
-    info: require('debug')('topics-manager:service:info'),
-    debug: require('debug')('topics-manager:service:debug'),
-    warn: require('debug')('topics-manager:service:warn'),
-    error: require('debug')('topics-manager:service:error')
+    log: debug('topics-manager:service:log'),
+    info: debug('topics-manager:service:info'),
+    debug: debug('topics-manager:service:debug'),
+    warn: debug('topics-manager:service:warn'),
+    error: debug('topics-manager:service:error')
 };
 
 class TopicsManager {

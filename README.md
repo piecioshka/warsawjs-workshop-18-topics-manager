@@ -10,7 +10,8 @@
 
 ```bash
 npm install
-npm run build:server
+npm run build:client
+npm run build
 npm run start
 ```
 
@@ -205,7 +206,7 @@ git push --tags
 0. Odświeżyć stronę po wylogowaniu użytkownika za pomocą:
 
     ```js
-    location.reload(true);
+    location.reload();
     ```
 
 0. Pobierać użytkownika od razu na starcie aplikacji

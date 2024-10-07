@@ -1,76 +1,89 @@
-let ACCESS_TOKEN = null;
-const GITHUB = require('../config').GITHUB;
-const GITHUB_ACCESS_TOKEN = require('../config').STORAGE.GITHUB_ACCESS_TOKEN;
+const uuid = require("uuid");
+const debug = require("debug");
 
-const CORS_PROXY = `https://cors-anywhere.herokuapp.com/`;
-const AUTHORIZE_URL = `https://github.com/login/oauth/authorize`;
-const FETCH_ACCESS_TOKEN_URL = `https://github.com/login/oauth/access_token`;
-const FETCH_PROFILE_URL = `https://api.github.com/user`;
+const GITHUB = require("../config").GITHUB;
+const GITHUB_ACCESS_TOKEN_KEY =
+    require("../config").STORAGE.GITHUB_ACCESS_TOKEN_KEY;
+
+const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+const AUTHORIZE_URL = "https://github.com/login/oauth/authorize";
+const ACCESS_TOKEN_URL = "https://github.com/login/oauth/access_token";
+const GITHUB_PROFILE_URL = "https://api.github.com/user";
 
 const console = {
-    log: require('debug')('github-auth-my-own:service:log'),
-    info: require('debug')('github-auth-my-own:service:info'),
-    warn: require('debug')('github-auth-my-own:service:warn'),
-    debug: require('debug')('github-auth-my-own:service:debug'),
-    error: require('debug')('github-auth-my-own:service:error')
+    log: debug("github-auth-my-own:service:log"),
+    info: debug("github-auth-my-own:service:info"),
+    warn: debug("github-auth-my-own:service:warn"),
+    debug: debug("github-auth-my-own:service:debug"),
+    error: debug("github-auth-my-own:service:error"),
 };
 
-function redirect(url) {
-    console.log('redirect', url);
-    location.href = url;
+let ACCESS_TOKEN = null;
+
+const TokenRepository = {
+    saveAccessToken() {
+        console.debug("TokenRepository, saveAccessToken");
+        localStorage.setItem(GITHUB_ACCESS_TOKEN_KEY, ACCESS_TOKEN);
+    },
+
+    restoreAccessToken() {
+        ACCESS_TOKEN = localStorage.getItem(GITHUB_ACCESS_TOKEN_KEY);
+        console.debug("TokenRepository, restoreAccessToken", { ACCESS_TOKEN });
+    },
+
+    deleteAccessToken() {
+        console.debug("TokenRepository, deleteAccessToken");
+        localStorage.removeItem(GITHUB_ACCESS_TOKEN_KEY);
+    },
+};
+
+function buildUrl(uri, params) {
+    const url = new URL(uri);
+    Object.keys(params).forEach((key) => {
+        url.searchParams.append(key, params[key]);
+    });
+    return url.toString();
 }
 
-function saveAccessToken() {
-    localStorage.setItem(GITHUB_ACCESS_TOKEN, ACCESS_TOKEN);
-}
-
-function restoreAccessToken() {
-    ACCESS_TOKEN = localStorage.getItem(GITHUB_ACCESS_TOKEN);
-}
-
-function deleteAccessToken() {
-    localStorage.removeItem(GITHUB_ACCESS_TOKEN);
-}
-
-function connect() {
-    console.log('connect');
+function requestTemporaryToken() {
+    console.log("requestTemporaryToken");
 
     if (ACCESS_TOKEN) return;
 
-    const queryParams = new URLSearchParams({
-        client_id: GITHUB.CLIENT_ID
+    const authorizeURL = buildUrl(AUTHORIZE_URL, {
+        client_id: GITHUB.CLIENT_ID,
+        redirect_uri: location.href,
+        scope: "user",
+        state: uuid.v4(),
     });
-    const authorizeURL = `${AUTHORIZE_URL}?${queryParams.toString()}`;
 
-    redirect(authorizeURL);
+    location.href = authorizeURL;
 }
 
-function authentication(code) {
-    console.log('authentication', code);
+function fetchAccessToken(params) {
+    console.log("fetchAccessToken", params);
 
-    const queryParams = new URLSearchParams({
+    const accessTokenParams = {
         client_id: GITHUB.CLIENT_ID,
         client_secret: GITHUB.CLIENT_SECRET,
-        code: code
-    });
-
-    const accessTokenURL = `${FETCH_ACCESS_TOKEN_URL}?${queryParams.toString()}`;
+        code: params.code,
+    };
     const options = {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Accept': 'application/json'
-        }
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(accessTokenParams),
     };
 
-    return fetch(`${CORS_PROXY}${accessTokenURL}`, options)
+    return fetch(CORS_PROXY + ACCESS_TOKEN_URL, options)
         .then((response) => response.json())
         .then((response) => {
             if (response.error) {
-                console.error(response);
-                return null;
+                throw new Error(response.error_description);
             }
 
-            // console.log(response);
             return response.access_token;
         })
         .catch(() => {
@@ -79,70 +92,79 @@ function authentication(code) {
 }
 
 function authorization() {
-    console.log('authorization');
+    console.log("authorization");
 
-    const accessCodeGitHub = new URL(location.href).searchParams.get('code');
+    const params = {
+        code: new URL(location.href).searchParams.get("code"),
+    };
 
-    if (!accessCodeGitHub) return Promise.resolve(null);
+    if (ACCESS_TOKEN) {
+        return Promise.resolve();
+    }
 
-    if (ACCESS_TOKEN) return Promise.resolve(null);
+    if (!params.code) {
+        return Promise.reject("missing code parameter");
+    }
 
-    return authentication(accessCodeGitHub)
+    return fetchAccessToken(params)
         .then((accessToken) => {
             if (!accessToken) {
-
-                if (accessCodeGitHub) {
-                    connect();
+                if (params.code) {
+                    requestTemporaryToken();
                 }
 
                 return;
             }
 
             ACCESS_TOKEN = accessToken;
-            saveAccessToken();
+            TokenRepository.saveAccessToken();
+            // Usuwamy zbędne parametry np. code, state, które ustawił GitHub OAuth2
+            location.href = location.href.replace(location.search, "");
+        })
+        .catch((error) => {
+            console.error(error);
         });
 }
 
 // -----------------------------------------------------------------------------
 
+function makeAuthRequest(url) {
+    console.log("makeAuthRequest", url);
+    return fetch(url, {
+        headers: {
+            Authorization: `token ${ACCESS_TOKEN}`,
+        },
+    }).then((response) => response.json());
+}
+
 function fetchProfile() {
-    console.log('fetchProfile');
+    console.log("fetchProfile");
 
-    restoreAccessToken();
+    TokenRepository.restoreAccessToken();
 
-    return authorization()
-        .then(() => {
-            if (!ACCESS_TOKEN) {
-                return Promise.resolve(null);
-            }
+    return authorization().then(() => {
+        if (!ACCESS_TOKEN) {
+            return Promise.reject("missing ACCESS_TOKEN");
+        }
 
-            const queryParams = new URLSearchParams({
-                access_token: ACCESS_TOKEN
-            });
-
-            const profileURL = `${FETCH_PROFILE_URL}?${queryParams.toString()}`;
-
-            const options = {
-                method: 'GET'
-            };
-
-            return fetch(profileURL, options)
-                .then((response) => response.json());
-        });
+        return makeAuthRequest(GITHUB_PROFILE_URL);
+    });
 }
 
 function signIn() {
-    connect();
+    console.log("signIn");
+    requestTemporaryToken();
 }
 
 function signOut() {
-    deleteAccessToken();
-    // Usunięcie parametru "code", który zostaje ustawiony przez GitHub API
-    location.href = location.href.replace(location.search, '');
+    console.log("signOut");
+    TokenRepository.deleteAccessToken();
+    // Usuwamy zbędne parametry np. code, state, które ustawił GitHub OAuth2
+    location.href = location.href.replace(location.search, "");
 }
 
 module.exports = {
     fetchProfile,
     signIn,
-    signOut
+    signOut,
 };

@@ -1,5 +1,2 @@
-const GitHubAuthMyOwn = require('./github-auth-my-own.service');
-const GitHubAuthWithHello = require('./github-auth-with-hello.service');
-
-// module.exports = GitHubAuthMyOwn;
-module.exports = GitHubAuthWithHello;
+module.exports = require('./github-auth-my-own.service');
+// module.exports = require('./github-auth-with-hello.service');

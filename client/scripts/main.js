@@ -3,6 +3,7 @@
 require('bulma');
 require('../styles/common.css');
 
+const debug = require('debug');
 const TopicAddFormComponent = require('./components/topic-add-form.component');
 const TopicListElementComponent = require('./components/topic-list-element.component');
 const TopicListComponent = require('./components/topic-list.component');
@@ -18,11 +19,11 @@ const UserService = require('./services/user.service');
 const version = require('../../package').version;
 
 const console = {
-    log: require('debug')('main:log'),
-    info: require('debug')('main:info'),
-    debug: require('debug')('main:debug'),
-    warn: require('debug')('main:warn'),
-    error: require('debug')('main:error')
+    log: debug('main:log'),
+    info: debug('main:info'),
+    debug: debug('main:debug'),
+    warn: debug('main:warn'),
+    error: debug('main:error')
 };
 
 let $app = null;
@@ -123,7 +124,7 @@ function auth() {
                 render();
             }
         }, (error) => {
-            console.log('ups...', error);
+            console.error('Error', error);
         });
 }
 

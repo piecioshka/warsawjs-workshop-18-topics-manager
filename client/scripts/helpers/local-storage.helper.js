@@ -4,14 +4,17 @@ class LocalStorageHelper {
 
     serialize(data) {
         const dataSerialized = JSON.stringify(data);
-        localStorage.setItem(STORAGE.DATABASE, dataSerialized);
+        localStorage.setItem(STORAGE.DATABASE_KEY, dataSerialized);
     }
 
     unserialize() {
-        const data = localStorage.getItem(STORAGE.DATABASE);
+        const data = localStorage.getItem(STORAGE.DATABASE_KEY);
 
         try {
-            return JSON.parse(data);
+            if (typeof data === 'string') {
+                return JSON.parse(data);
+            }
+            return null;
         } catch (err) {
             return null;
         }

@@ -1,9 +1,11 @@
+const debug = require('debug');
+
 const console = {
-    log: require('debug')('trainers-manager:service:log'),
-    info: require('debug')('trainers-manager:service:info'),
-    debug: require('debug')('trainers-manager:service:debug'),
-    warn: require('debug')('trainers-manager:service:warn'),
-    error: require('debug')('trainers-manager:service:error')
+    log: debug('trainers-manager:service:log'),
+    info: debug('trainers-manager:service:info'),
+    debug: debug('trainers-manager:service:debug'),
+    warn: debug('trainers-manager:service:warn'),
+    error: debug('trainers-manager:service:error')
 };
 
 class TrainersManager {
