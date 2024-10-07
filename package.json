@@ -13,8 +13,9 @@
         "build:client": "parcel build client/index.html --no-cache --no-source-maps --no-content-hash --public-url ./",
         "watch": "parcel client/index.html",
         "build": "node server/build.js",
-        "deploy": "vercel --prod",
-        "start": "node server/main.js"
+        "start": "node server/main.js",
+        "predeploy": "npm run build:client",
+        "deploy": "vercel --prod"
     },
     "dependencies": {
         "dotenv": "^16.4.5"
@@ -31,9 +32,9 @@
         "parcel-bundler": "^1.10.2",
         "parcel-plugin-static-files-copy": "^2.6.0",
         "sass": "^1.79.4",
-        "super-event-emitter": "^4.1.6",
+        "super-event-emitter": "^4.1.13",
         "uuid": "^10.0.0",
-        "vercel": "^37.6.0"
+        "vercel": "^37.6.1"
     },
     "repository": {
         "type": "git",
