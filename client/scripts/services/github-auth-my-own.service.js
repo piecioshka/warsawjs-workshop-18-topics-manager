@@ -53,7 +53,7 @@ function requestTemporaryToken() {
     const authorizeURL = buildUrl(AUTHORIZE_URL, {
         client_id: GITHUB.CLIENT_ID,
         redirect_uri: location.href,
-        scope: "user",
+        scope: GITHUB.SCOPE,
         state: uuid.v4(),
     });
 
@@ -85,9 +85,6 @@ function fetchAccessToken(params) {
             }
 
             return response.access_token;
-        })
-        .catch(() => {
-            return null;
         });
 }
 
@@ -106,36 +103,25 @@ function authorization() {
         return Promise.reject("missing code parameter");
     }
 
-    return fetchAccessToken(params)
-        .then((accessToken) => {
-            if (!accessToken) {
-                if (params.code) {
-                    requestTemporaryToken();
-                }
-
-                return;
-            }
-
-            ACCESS_TOKEN = accessToken;
-            TokenRepository.saveAccessToken();
-            // Usuwamy zbędne parametry np. code, state, które ustawił GitHub OAuth2
-            location.href = location.href.replace(location.search, "");
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+    return fetchAccessToken(params).then((accessToken) => {
+        ACCESS_TOKEN = accessToken;
+        TokenRepository.saveAccessToken();
+        // Usuwamy zbędne parametry np. code, state, które ustawił GitHub OAuth2
+        location.href = location.href.replace(location.search, "");
+    });
 }
-
-// -----------------------------------------------------------------------------
 
 function makeAuthRequest(url) {
     console.log("makeAuthRequest", url);
-    return fetch(url, {
+    const options = {
         headers: {
             Authorization: `token ${ACCESS_TOKEN}`,
         },
-    }).then((response) => response.json());
+    };
+    return fetch(url, options).then((response) => response.json());
 }
+
+// -----------------------------------------------------------------------------
 
 function fetchProfile() {
     console.log("fetchProfile");

@@ -1,7 +1,10 @@
+const uuid = require("uuid");
 const debug = require("debug");
 const hello = require("hellojs");
 const gitHubAuth = hello("github");
 const GITHUB = require("../config").GITHUB;
+
+// WARNING: This integration has sometimes issues, because https://github.com/MrSwitch/hello.js/issues/670
 
 const console = {
     log: debug("github-auth-with-hello:service:log"),
@@ -27,14 +30,16 @@ function fetchProfile() {
         },
         {
             redirect_uri: location.href,
+            scope: GITHUB.SCOPE,
+            state: uuid.v4(),
         }
     );
 
     const status = gitHubAuth.getAuthResponse();
 
     if (!status) {
-        return Promise.reject('user is not authenticated')
-    };
+        return Promise.reject("user is not authenticated");
+    }
 
     return gitHubAuth.api("/me");
 }
@@ -48,7 +53,7 @@ function signIn() {
 
 function signOut() {
     console.log("signOut");
-    return hello.logout("github").then(() => {
+    gitHubAuth.logout().then(() => {
         location.reload();
     });
 }

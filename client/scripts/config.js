@@ -5,6 +5,7 @@ module.exports = {
         CLIENT_ID: "818f8c60795bd17bc476",
         // INFO: Uwaga! CLIENT_SECRET nie powinno być przechowywane w kodzie źródłowym.
         CLIENT_SECRET: "",
+        SCOPE: "user",
     },
 
     TOPIC_READY_TO_RELEASE: {

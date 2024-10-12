@@ -122,8 +122,11 @@ function auth() {
                 UserService.signIn(profile);
                 TrainersManager.add(UserService.getUser());
                 render();
+            } else {
+                throw new Error("User is not authenticated");
             }
-        }, (error) => {
+        })
+        .catch((error) => {
             console.error('Error', error);
         });
 }
