@@ -14,7 +14,7 @@ module.exports = {
     },
 
     UNKNOWN_TRAINER: {
-        AVATAR_URL: "https://via.placeholder.com/48x48?text=USER",
+        AVATAR_URL: "https://placehold.co/48x48?text=USER",
         NAME: "Nieznany",
         LOGIN: "",
     },
