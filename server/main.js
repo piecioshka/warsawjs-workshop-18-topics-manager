@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ quiet: true });
 
 const path = require("path");
 const PORT = process.env.PORT || 2095;
